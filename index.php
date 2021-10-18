@@ -16,43 +16,14 @@ include "php_library/pokedex.php";
     <h1>
         <?php
         $pokedex = array(
-            $pokemon1 => array(
-                "Number" => 001,
-                "Name" => "Bulbasur",
-                "Region" => "Hoen",
-                "Type" => "Plant, Poison",
-                "Height" => 70,
-                "Weight" => 6.9,
-                "Evolution" => "Without Evolution",
-                "Picture" => "https://www.pokemon.com/es/pokedex/bulbasaur"
-            ),
-
-            $pokemon2 => array(
-                "Number" => 002,
-                "Name" => "Ivysur",
-                "Region" => "Hoen",
-                "Type" => "Plant, Poison",
-                "Height" => 100,
-                "Weight" => 13,
-                "Evolution" => "First Evolution",
-                "Picture" => "https://www.pokemon.com/es/pokedex/ivysaur"
-            ),
-
-            $pokemon3 => array(
-                "Number" => 004,
-                "Name" => "Charmander",
-                "Region" => "Jotho",
-                "Type" => "Fire",
-                "Height" => 60,
-                "Weight" => 8.5,
-                "Evolution" => "Without Evolution",
-                "Picture" => "https://www.pokemon.com/es/pokedex/charmander"
-            )
+            $pokemon1 => array($Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture),
+            $pokemon2 => array($Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture),
+            $pokemon3 => array($Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
         );
-        createPokemon($Number = 001, $Name = "Bulbasur", $Region = "Hoen", $Type = "Plant, Poison", $Height = 70, $Weight = 6.9, $Evolution = "Without Evolution", $Picture = "https://www.pokemon.com/es/pokedex/bulbasaur");
+        createPokemon($pokemon1 == ($Number = 001, $Name = "Bulbasur", $Region = "Hoen", $Type = "Plant, Poison", $Height = 70, $Weight = 6.9, $Evolution = "Without Evolution", $Picture = "https://www.pokemon.com/es/pokedex/bulbasaur"));
         createPokemon($Number = 002, $Name = "Ivysur", $Region = "Hoen", $Type = "Plant, Poison", $Height = 100, $Weight = 13, $Evolution = "First Evolution", $Picture = "https://www.pokemon.com/es/pokedex/ivysaur");
         createPokemon($Number = 004, $Name = "Charmander", $Region = "Jotho", $Type = "Fire", $Height = 60, $Weight = 8.5, $Evolution = "Without Evolution", $Picture = "https://www.pokemon.com/es/pokedex/charmander");
-        showPokemon();
+        showPokemon($pokemon1);
         addPokemon();
         dropPokemon();
         modifyPokemon();
