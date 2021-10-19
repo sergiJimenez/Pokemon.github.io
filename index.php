@@ -15,20 +15,48 @@ include "php_library/pokedex.php";
 <body>
     <h1>
         <?php
-        $pokedex = array(
-            $pokemon1 => array($Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture),
-            $pokemon2 => array($Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture),
-            $pokemon3 => array($Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
-        );
-        createPokemon($pokemon1 == ($Number = 001, $Name = "Bulbasur", $Region = "Hoen", $Type = "Plant, Poison", $Height = 70, $Weight = 6.9, $Evolution = "Without Evolution", $Picture = "https://www.pokemon.com/es/pokedex/bulbasaur"));
-        createPokemon($Number = 002, $Name = "Ivysur", $Region = "Hoen", $Type = "Plant, Poison", $Height = 100, $Weight = 13, $Evolution = "First Evolution", $Picture = "https://www.pokemon.com/es/pokedex/ivysaur");
-        createPokemon($Number = 004, $Name = "Charmander", $Region = "Jotho", $Type = "Fire", $Height = 60, $Weight = 8.5, $Evolution = "Without Evolution", $Picture = "https://www.pokemon.com/es/pokedex/charmander");
-        showPokemon($pokemon1);
-        addPokemon();
-        dropPokemon();
-        modifyPokemon();
-        searchPokemonNumber($Number = 002);
+        //Creamos una pokedex vacia:
+        $pokedex = array();
+
+        //Creamos 1 pokemon:
+        $pokemon = createPokemon("001", "Bulbasur", "Hoen", "Plant, Poison", "70", "6.9", "Without Evolution", "001.png");
+        //Añadimos el pokemon creado a la pokedex:
+        addPokemon($pokemon, $pokedex);
+        //EXTRA = Mostramos el pokemon añadido:
+        showPokemon($pokemon);
+
+        //Creamos 2 pokemon:
+        $pokemon = createPokemon("002", "Ivysur", "Hoen", "Plant, Poison", "100", "13", "First Evolution", "002.png");
+        //Añadimos el pokemon creado a la pokedex:
+        addPokemon($pokemon, $pokedex);
+        //EXTRA = Mostramos el pokemon añadido:
+        showPokemon($pokemon);
+
+        //Creamos 3 pokemon:
+        $pokemon = createPokemon("004", "Charmander", "Jotho", "Fire", "60", "8.5", "Without Evolution", "004.png");
+        //Añadimos el pokemon creado a la pokedex:
+        addPokemon($pokemon, $pokedex);
+        //EXTRA = Mostramos el pokemon añadido:
+        showPokemon($pokemon);
+
+
+        //Muestra toda la pokedex que tenemos hasta ahora:
         showPokedex($pokedex);
+
+        //Elimina el pokemon:
+        dropPokemon($pokedex);
+
+        //Volvemos a mostrar toda la pokedex:
+        showPokedex($pokedex);
+
+
+
+        //En el ejercicio no sale pero para mostrar que funciona ejecutaré las dos funciones no indicadas:
+        //Modifica un pokemon:
+        modifyPokemon();
+
+        //Busca un pokemon:
+        //searchPokemonNumber($pokemon = "001");
         ?>
     </h1>
 </body>
