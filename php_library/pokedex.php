@@ -50,18 +50,41 @@ function dropPokemon(&$pokedex)
     $pokedex = array_filter($pokedex); //elimina las ubicaciones vacias del array.
 }
 
-function modifyPokemon()
+function modifyPokemon(&$pokedex, $modifyPokemon, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
 {
+    $i = 0;
+    $notAvaliable = false;
+
+    while ($i <= count($pokedex) - 1 && $notAvaliable == false) {
+        if ($pokedex[$i]["Number"] == $modifyPokemon) {
+            echo "Pokemon number: " . $pokedex[$i]["Number"] . "<br>";
+            $notAvaliable = true;
+
+            $modifyPokemon = array(
+                "Number" => $modifyPokemon,
+                "Name" => $Name,
+                "Region" => $Region,
+                "Type" => $Type,
+                "Height" => $Height,
+                "Weight" => $Weight,
+                "Evolution" => $Evolution,
+                "Picture" => $Picture
+            );
+
+            $pokedex[$i] = $modifyPokemon;
+        }
+        $i++;
+    }
 }
-/*
-function searchPokemonNumber($pokemon)
+
+function searchPokemonNumber(&$pokedex)
 {
-    $findPokemon = array_key_exists($pokemon);
-    if ($findPokemon === false) {
+    $findingPokemon = in_array("001", $pokedex);
+    if (!$findingPokemon) {
         echo "-1";
     }
 }
-*/
+
 
 function showPokedex(&$pokedex)
 {
