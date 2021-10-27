@@ -52,7 +52,8 @@ include "php_library/pokedex.php";
 
         //En el ejercicio no sale pero para mostrar que funciona ejecutaré las dos funciones no indicadas:
         //Modifica un pokemon:
-        modifyPokemon($pokedex, $modifyPokemon, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture);
+        modifyPokemon($pokedex, "Bulbasur", "0011", "Mega Bulbasur", "Jotho", "Plant, Poison, Fire", "170", "655.89", "With Evolution", "009.png");
+        showPokedex($pokedex);
 
         //Busca un pokemon:
         searchPokemonNumber($pokedex);

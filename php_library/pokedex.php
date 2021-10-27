@@ -50,18 +50,18 @@ function dropPokemon(&$pokedex)
     $pokedex = array_filter($pokedex); //elimina las ubicaciones vacias del array.
 }
 
-function modifyPokemon(&$pokedex, $modifyPokemon, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
+function modifyPokemon(&$pokedex, $modifyPokemon, $Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
 {
     $i = 0;
     $notAvaliable = false;
 
     while ($i <= count($pokedex) - 1 && $notAvaliable == false) {
-        if ($pokedex[$i]["Number"] == $modifyPokemon) {
-            echo "Pokemon number: " . $pokedex[$i]["Number"] . "<br>";
+        if ($pokedex[$i]["Name"] == $modifyPokemon) {
+            echo "Pokemon name: " . $pokedex[$i]["Name"] . "<br>";
             $notAvaliable = true;
 
             $modifyPokemon = array(
-                "Number" => $modifyPokemon,
+                "Number" => $Number,
                 "Name" => $Name,
                 "Region" => $Region,
                 "Type" => $Type,
