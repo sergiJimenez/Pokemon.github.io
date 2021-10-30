@@ -39,40 +39,40 @@
         <!-- Section 4 -->
         <label for="types">Tipo: </label>
         <!-- Type1 -->
-        <input type="checkbox" id="type1" name="type1" value="Planta">
+        <input type="checkbox" id="type1" name="type" value="Planta">
         <label for="type1">Planta</label>
         <!-- Type2 -->
-        <input type="checkbox" id="type2" name="type2" value="Veneno">
+        <input type="checkbox" id="type2" name="type" value="Veneno">
         <label for="type2">Veneno</label>
         <!-- Type3 -->
-        <input type="checkbox" id="type3" name="type3" value="Fuego">
+        <input type="checkbox" id="type3" name="type" value="Fuego">
         <label for="type3">Fuego</label>
         <!-- Type4 -->
-        <input type="checkbox" id="type4" name="type4" value="Volador">
+        <input type="checkbox" id="type4" name="type" value="Volador">
         <label for="type4">Volador</label>
         <!-- Type5 -->
-        <input type="checkbox" id="type5" name="type5" value="Agua">
+        <input type="checkbox" id="type5" name="type" value="Agua">
         <label for="type5">Agua</label>
         <!-- Type6 -->
-        <input type="checkbox" id="type6" name="type6" value="Electrico">
+        <input type="checkbox" id="type6" name="type" value="Electrico">
         <label for="type6">Eléctrico</label>
         <!-- Type7 -->
-        <input type="checkbox" id="type7" name="type7" value="Hada">
+        <input type="checkbox" id="type7" name="type" value="Hada">
         <label for="type7">Hada</label>
         <!-- Type8 -->
-        <input type="checkbox" id="type8" name="type8" value="Bicho">
+        <input type="checkbox" id="type8" name="type" value="Bicho">
         <label for="type8">Bicho</label>
         <!-- Type9 -->
-        <input type="checkbox" id="type9" name="type9" value="Lucha">
+        <input type="checkbox" id="type9" name="type" value="Lucha">
         <label for="type9">Lucha</label>
         <!-- Type10 -->
-        <input type="checkbox" id="type10" name="type10" value="Psiquico">
+        <input type="checkbox" id="type10" name="type" value="Psiquico">
         <label for="type10">Psíquico</label><br><br>
         <!-- AIR -->
         <!-- AIR -->
         <!-- Section 5 -->
         <label for="height">Altura: </label>
-        <input type="number" id="height" name="height" placeholder="Altura del Pokemon" minlength="1"><br><br>
+        <input type="number" id="height" name="height" placeholder="Altura del Pokemon" min="1"><br><br>
         <!-- AIR -->
         <!-- AIR -->
         <!-- Section 6 -->
