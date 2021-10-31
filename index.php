@@ -1,5 +1,6 @@
 <?php
 include "php_library/pokedex.php";
+include "php_views/pokemon.php";
 ?>
 
 <!DOCTYPE html>
