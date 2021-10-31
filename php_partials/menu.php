@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/menu.css">
     <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    <script src="js/index.js"></script>
+    <script src="js/menu.js"></script>
     <script src="bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
 </head>
 

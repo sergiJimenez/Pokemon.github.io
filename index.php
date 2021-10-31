@@ -1,7 +1,7 @@
 <?php
 //include "php_library/pokedex.php";
 //include "php_views/pokemon.php";
-include "php_partials/menu.php";
+//include "php_partials/menu.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +14,13 @@ include "php_partials/menu.php";
     <title>Pokedex</title>
     <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    <script src="js/index.js"></script>
     <script src="bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
 </head>
 
 <body class="background">
+    <?php
+    include "php_partials/menu.php";
+    ?>
     <!-- <h1>
         <?php
         //Creamos una pokedex vacia:
