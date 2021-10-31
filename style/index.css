@@ -1,0 +1,16 @@
+.background {
+  background-image: url("../media/Pokedex.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.navbar {
+  background-color: blue;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.sticky + .content {
+  padding-top: 60px;
+}

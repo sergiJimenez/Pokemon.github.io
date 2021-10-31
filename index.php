@@ -1,23 +1,25 @@
 <?php
-include "php_library/pokedex.php";
-include "php_views/pokemon.php";
+//include "php_library/pokedex.php";
+//include "php_views/pokemon.php";
+include "php_partials/menu.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css">
+    <script src="js/index.js"></script>
     <script src="bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-
-    <h1>
+<body class="background">
+    <!-- <h1>
         <?php
         //Creamos una pokedex vacia:
         $pokedex = array();
@@ -62,7 +64,7 @@ include "php_views/pokemon.php";
         //Busca un pokemon:
         searchPokemonNumber($pokedex);
         ?>
-    </h1>
+    </h1> -->
 </body>
 
 </html>
