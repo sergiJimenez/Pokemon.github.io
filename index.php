@@ -19,7 +19,7 @@
 
 <body class="background">
     <?php
-    include "php_partials/menu.php";
+    abs(include "php_partials/menu.php");
     ?>
     <!-- <h1>
         <?php
