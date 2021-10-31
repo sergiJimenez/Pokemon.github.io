@@ -19,18 +19,35 @@
                 Pokemon
             </a>
         </div>
+        <!-- AIR -->
+        <!-- AIR -->
+        <!-- AIR -->
+        <!-- AIR -->
+        <!-- AIR -->
         <form style="padding-left: 20px; padding-top: 20px">
-            <!-- Section 1 -->
-            <label for="pokemonNumber" style="padding-right: 240px">Numero</label>
-            <input type="text" class="container-fluid col-10" id="pokemonNumber" name="pokemonNumber" placeholder="Numero del Pokemon" maxlength="3" autofocus><br><br>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- Section 2 -->
-            <label for="pokemonName" style="padding-right: 240px">Nombre</label>
-            <input type="text" class="container-fluid col-10" id="pokemonName" name="pokemonName" placeholder="Nombre del Pokemon"><br><br>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Section 1 -->
+                    <div class="row">
+                        <label for="pokemonNumber" class="col-sm-2 col-form-label">Numero</label>
+                        <div class="col-sm" style="padding-right: 30px;">
+                            <input type="text" class="form-control" id="pokemonNumber" name="pokemonNumber" maxlength="3" autofocus><br><br>
+                        </div>
+                    </div>
+                </div>
+                <!-- AIR -->
+                <!-- AIR -->
+                <!-- AIR -->
+                <!-- AIR -->
+                <!-- AIR -->
+                <!-- Section 2 -->
+                <div class="row">
+                    <label for="pokemonName" class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm" style="padding-right: 30px;">
+                        <input type="text" class="form-control" id=" pokemonName" name="pokemonName"><br><br>
+                    </div>
+                </div>
+            </div>
             <!-- AIR -->
             <!-- AIR -->
             <!-- AIR -->
