@@ -158,48 +158,75 @@
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 5 -->
-                <label for="height">Altura</label>
-                <input type="number" id="height" name="height" placeholder="Altura del Pokemon" min="1"><br><br>
+                <div class="row pt-2">
+                    <label for="height" class="col-sm-3 col-form-label">Altura</label>
+                    <div class="input-group col-sm">
+                        <input type="number" class="form-control" id="height" name="height" placeholder="Altura del Pokemon" min="1">
+                        <span class="input-group-text" id="addon-wrapping">cm</span>
+                    </div>
+                </div>
+
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 6 -->
-                <label for="weight">Peso</label>
-                <input type="number" id="weight" name="weight" placeholder="Peso del Pokemon" min="0" step="0.01"><br><br> <!--  ___________________DECIMALS______________________  -->
+                <div class="row pt-2">
+                    <label for="weight" class="col-sm-3 col-form-label">Peso</label>
+                    <div class="input-group col-sm">
+                        <input type="number" class="form-control" id="weight" name="weight" placeholder="Peso del Pokemon" min="0" step="0.01"><!--  ___________________DECIMALS______________________  -->
+                        <span class="input-group-text" id="addon-wrapping">kg</span>
+                    </div>
+                </div>
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 7 -->
-                <label for=" evolution">Evolución</label>
-                <!-- Option1 -->
-                <input type="radio" id="withoutEvolution" name="radioSelector" value="withoutEvolution">
-                <label for="withoutEvolution">Sin Evolucionar</label>
-                <!-- Option2 -->
-                <input type="radio" id="firstEvolution" name="radioSelector" value="firstEvolution">
-                <label for="firstEvolution">Primera Evolución</label>
-                <!-- Option3 -->
-                <input type="radio" id="othersEvolution" name="radioSelector" value="othersEvolution">
-                <label for="othersEvolution">Otras Evoluciones</label><br><br>
+                <div class="row pt-2">
+                    <label for=" evolution" class="col-sm-3 col-form-label">Evolución</label>
+                    <div class="col-sm">
+                        <!-- Option1 -->
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="withoutEvolution" class="form-check-input" name="radioSelector" value="withoutEvolution">
+                            <label class="form-check-label" for="withoutEvolution">Sin Evolucionar</label>
+                        </div>
+                        <!-- Option2 -->
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="firstEvolution" class="form-check-input" name="radioSelector" value="firstEvolution">
+                            <label class="form-check-label" for="firstEvolution">Primera Evolución</label>
+                        </div>
+                        <!-- Option3 -->
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="othersEvolution" class="form-check-input" name="radioSelector" value="othersEvolution">
+                            <label class="form-check-label" for="othersEvolution">Otras Evoluciones</label>
+                        </div>
+                    </div>
+                </div>
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 8 -->
-                <label for="image">Imagen</label>
-                <input type="file" id="selectFile" name="selectFile"><br><br>
+                <div class="row pt-2">
+                    <label for="image" class="col-sm-3 col-form-label">Imagen</label>
+                    <div class="col-sm">
+                        <input type="file" id="selectFile" class="form-control" name="selectFile"><br><br>
+                    </div>
+                </div>
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 9 -->
-                <input type="submit" value="Aceptar">
-                <a href="empty">Cancelar</a>
+                <div class="float-right">
+                    <a class="btn btn-secondary" href="pokemon_list.php">Cancelar</a>
+                    <input class="btn btn-primary" type="submit" value="Aceptar">
+                </div>
             </form>
         </div>
     </div>
