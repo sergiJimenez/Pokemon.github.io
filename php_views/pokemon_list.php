@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Searching Pokemon</title>
-    <link rel="stylesheet" href="../style/searchPokemon.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script src="../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
 </head>
 
 <body class="body_pokemon">
-    <?php include 'php_partials/menu.php'; ?>
+    <?php include '../php_partials/menu.php'; ?>
 
     <div class="container-fluid p-4">
         <br>

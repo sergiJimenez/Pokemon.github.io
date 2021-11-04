@@ -6,16 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <!-- LINKS -->
     <link rel="stylesheet" href="style/menu.css">
     <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script src="js/menu.js"></script>
     <script src="bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+    <!-- LINKS -->
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary text-light" id="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">
-            <img src="./media/Pokedex.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        <!-- INDEX LINK --> <a class="navbar-brand" href="../index.php">
+            <img src="../media/Pokedex.png" width="30" height="24" class="d-inline-block align-text-top">
             Pokedex
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
