@@ -1,5 +1,5 @@
 <?php
-abs(include "php_partials/menu.php");
+abs(include "php_partials/navbarMenu.php");
 ?>
 
 <!DOCTYPE html>

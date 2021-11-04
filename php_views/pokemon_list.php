@@ -1,6 +1,6 @@
 <!-- POKEMON NAVBAR MENU -->
 <?php
-include '../php_partials/menu.php';
+include '../php_partials/navbarMenu.php';
 ?>
 <!-- POKEMON NAVBAR MENU -->
 
