@@ -75,77 +75,77 @@
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 4 -->
-                <div class="row pt-2">
+                <div class="form-group row pt-2">
                     <label for="types" class="col-sm-3 col-form-label">
                         Tipo
                     </label>
-                    <div class="col-sm">
+                    <div class="col-sm-7">
                         <!-- Type1 -->
-                        <input type="checkbox" class="form-check-input" id="type1" name="type" value="Planta">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type1" name="type" value="Planta">
                             <label for="type1" class="row-sm-4">
                                 Planta
                             </label>
                         </div>
                         <!-- Type2 -->
-                        <input type="checkbox" class="form-check-input" id="type2" name="type" value="Veneno">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type2" name="type" value="Veneno">
                             <label for="type2" class="row-sm-4">
                                 Veneno
                             </label>
                         </div>
                         <!-- Type3 -->
-                        <input type="checkbox" class="form-check-input" id="type3" name="type" value="Fuego">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type3" name="type" value="Fuego">
                             <label for="type3" class="row-sm-4">
                                 Fuego
                             </label>
                         </div>
                         <!-- Type4 -->
-                        <input type="checkbox" class="form-check-input" id="type4" name="type" value="Volador">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type4" name="type" value="Volador">
                             <label for="type4" class="row-sm-4">
                                 Volador
                             </label>
                         </div>
                         <!-- Type5 -->
-                        <input type="checkbox" class="form-check-input" id="type5" name="type" value="Agua">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type5" name="type" value="Agua">
                             <label for="type5" class="row-sm-4">
                                 Agua
                             </label>
                         </div>
                         <!-- Type6 -->
-                        <input type="checkbox" class="form-check-input" id="type6" name="type" value="Electrico">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type6" name="type" value="Electrico">
                             <label for="type6" class="row-sm-4">
                                 Eléctrico
                             </label>
                         </div>
                         <!-- Type7 -->
-                        <input type="checkbox" class="form-check-input" id="type7" name="type" value="Hada">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type7" name="type" value="Hada">
                             <label for="type7" class="row-sm-4">
                                 Hada
                             </label>
                         </div>
                         <!-- Type8 -->
-                        <input type="checkbox" class="form-check-input" id="type8" name="type" value="Bicho">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type8" name="type" value="Bicho">
                             <label for="type8" class="row-sm-4">
                                 Bicho
                             </label>
                         </div>
                         <!-- Type9 -->
-                        <input type="checkbox" class="form-check-input" id="type9" name="type" value="Lucha">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type9" name="type" value="Lucha">
                             <label for="type9" class="row-sm-4">
                                 Lucha
                             </label>
                         </div>
                         <!-- Type10 -->
-                        <input type="checkbox" class="form-check-input" id="type10" name="type" value="Psiquico">
                         <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="type10" name="type" value="Psiquico">
                             <label for="type10" class="row-sm-4">
                                 Psíquico
                             </label>
@@ -161,7 +161,7 @@
                 <div class="row pt-2">
                     <label for="height" class="col-sm-3 col-form-label">Altura</label>
                     <div class="input-group col-sm">
-                        <input type="number" class="form-control" id="height" name="height" placeholder="Altura del Pokemon" min="1">
+                        <input type="number" class="form-control" id="height" name="height" min="1">
                         <span class="input-group-text" id="addon-wrapping">cm</span>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                 <div class="row pt-2">
                     <label for="weight" class="col-sm-3 col-form-label">Peso</label>
                     <div class="input-group col-sm">
-                        <input type="number" class="form-control" id="weight" name="weight" placeholder="Peso del Pokemon" min="0" step="0.01"><!--  ___________________DECIMALS______________________  -->
+                        <input type="number" class="form-control" id="weight" name="weight" min="0" step="0.01"><!--  ___________________DECIMALS______________________  -->
                         <span class="input-group-text" id="addon-wrapping">kg</span>
                     </div>
                 </div>
@@ -214,7 +214,9 @@
                 <div class="row pt-2">
                     <label for="image" class="col-sm-3 col-form-label">Imagen</label>
                     <div class="col-sm">
-                        <input type="file" id="selectFile" class="form-control" name="selectFile"><br><br>
+                        <div class="custom-flie">
+                            <input type="file" id="selectFile" class="form-control" name="selectFile"><br><br>
+                        </div>
                     </div>
                 </div>
                 <!-- AIR -->
@@ -223,7 +225,7 @@
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- Section 9 -->
-                <div class="float-right">
+                <div class="text-end">
                     <a class="btn btn-secondary" href="pokemon_list.php">Cancelar</a>
                     <input class="btn btn-primary" type="submit" value="Aceptar">
                 </div>
