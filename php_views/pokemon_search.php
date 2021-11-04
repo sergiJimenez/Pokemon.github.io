@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-header bg-secondary">
             <a class="text-light" style="text-decoration: none;">
-                <img src="../media/Pokedex.png" width="50px" height="50px">
+                <img src="../media/Pokeball.png" width="50px" height="50px">
                 Pokemon
             </a>
         </div>
