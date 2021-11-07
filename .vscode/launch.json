@@ -8,10 +8,10 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "pwa-chrome",
-            "url": "http://localhost:8080/Pokemon.github.io/index.php",
+            //"url": "http://localhost:8080/Pokemon.github.io/index.php",
             //"url": "http://localhost:8080/Pokemon.github.io/php_partials/navbarMenu.php",
             //"url": "http://localhost:8080/Pokemon.github.io/php_views/pokemon_list.php",
-            //"url": "http://localhost:8080/Pokemon.github.io/php_views/pokemon_search.php",
+            "url": "http://localhost:8080/Pokemon.github.io/php_views/pokemon_search.php",
             "webRoot": "${workspaceFolder}"
         }
     ]

@@ -13,6 +13,11 @@
 </head>
 
 <body>
+    <div>
+        <?php
+        include '../php_partials/navbarMenu.php';
+        ?>
+    </div>
     <div class="card">
         <div class="card-header bg-secondary">
             <a class="text-light" style="text-decoration: none;">

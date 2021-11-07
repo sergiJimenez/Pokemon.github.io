@@ -18,7 +18,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary text-light" id="navbar">
     <div class="container-fluid">
-        <!-- INDEX LINK --> <a class="navbar-brand" href="../index.php">
+        <!-- INDEX LINK --> <a class="navbar-brand" href="/index.php">
             <img src="/Pokemon.github.io/media/Pokedex.png" width="30" height="24" class="d-inline-block align-text-top"><!-- ABSOLUTE LINK (/ALL_ROUTE) -->
             Pokedex
         </a>
