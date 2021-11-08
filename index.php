@@ -1,7 +1,3 @@
-<?php
-include "php_partials/navbarMenu.php";
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,6 +14,11 @@ include "php_partials/navbarMenu.php";
 </head>
 
 <body class="background">
+    <!-- POKEMON NAVBAR MENU -->
+    <?php
+    include "php_partials/navbarMenu.php";
+    ?>
+    <!-- POKEMON NAVBAR MENU -->
     <!-- <h1>
         <?php
         //Creamos una pokedex vacia:

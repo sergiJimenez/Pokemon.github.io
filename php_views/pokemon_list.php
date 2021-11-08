@@ -1,9 +1,3 @@
-<!-- POKEMON NAVBAR MENU -->
-<?php
-include '../php_partials/navbarMenu.php';
-?>
-<!-- POKEMON NAVBAR MENU -->
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,6 +17,11 @@ include '../php_partials/navbarMenu.php';
 </head>
 
 <body class="bodyPokemon">
+    <!-- POKEMON NAVBAR MENU -->
+    <?php
+    include '../php_partials/navbarMenu.php';
+    ?>
+    <!-- POKEMON NAVBAR MENU -->
     <div class="container-fluid p-4">
         <br>
         <div class="row row-cols-1 row-cols-md-5 g-4">
