@@ -16,31 +16,34 @@ function createPokemon($Number, $Name, $Region, $Type, $Height, $Weight, $Evolut
 
 function showPokemon($pokemon)
 {
-    echo "Pokemon stats: " . "<br>";
-    echo "Number: " . $pokemon["Number"] . "<br>";
-    echo "Name: " . $pokemon["Name"] . "<br>";
-    echo "Region: " . $pokemon["Region"] . "<br>";
-    echo "Type: " . $pokemon["Type"] . "<br>";
-    echo "Height: " . $pokemon["Height"] . "<br>";
-    echo "Weight: " . $pokemon["Weight"] . "<br>";
-    echo "Evolution: " . $pokemon["Evolution"] . "<br>";
-    echo "Picture: " . $pokemon["Picture"] . "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "Pokemon:" . "<br>";
+    foreach ($pokemon as $key => $value) {
+        echo $key . ": " . $value . "." . "<br>";
+    }
+    echo "___________________________________________________________________________";
+    echo "<br>";
     echo "<br>";
 }
 
 function addPokemon($pokemon, &$pokedex)
 {
-    array_push($pokedex, array(
-        "Number" => $pokemon["Number"],
-        "Name" => $pokemon["Name"],
-        "Region" => $pokemon["Region"],
-        "Type" => $pokemon["Type"],
-        "Height" => $pokemon["Height"],
-        "Weight" => $pokemon["Weight"],
-        "Evolution" => $pokemon["Evolution"],
-        "Picture" => $pokemon["Picture"],
-    ));
-    echo "The new pokemon in your pokedex is: " . $pokemon["Name"] . "<br>";
+    if (searchPokemonNumber($pokedex, $pokemon) == -1) {
+        array_push($pokedex, array(
+            "Number" => $pokemon["Number"],
+            "Name" => $pokemon["Name"],
+            "Region" => $pokemon["Region"],
+            "Type" => $pokemon["Type"],
+            "Height" => $pokemon["Height"],
+            "Weight" => $pokemon["Weight"],
+            "Evolution" => $pokemon["Evolution"],
+            "Picture" => $pokemon["Picture"],
+        ));
+        echo "The new pokemon in your pokedex is: " . $pokemon["Name"] . "<br>";
+    } else {
+        echo "Pokemon  already exist.";
+    }
 }
 
 function dropPokemon(&$pokedex)
@@ -77,12 +80,21 @@ function modifyPokemon(&$pokedex, $modifyPokemon, $Number, $Name, $Region, $Type
     }
 }
 
-function searchPokemonNumber(&$pokedex)
+function searchPokemonNumber($pokedex, $pokemon)
 {
-    $findingPokemon = in_array("001", $pokedex);
-    if (!$findingPokemon) {
-        echo "-1";
+    $i = 0;
+    $position = -1;
+    $exist = false;
+    while ($i <  count($pokedex) && !$exist) {
+        if ($pokedex[$i]["Number"] == $pokemon["Number"]) {
+            $exist = true;
+            $position = $i;
+            echo "Pokemon position in array: " . $position;
+        } else {
+            $i++;
+        }
     }
+    return $position;
 }
 
 

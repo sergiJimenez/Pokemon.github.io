@@ -19,7 +19,7 @@
     include "php_partials/navbarMenu.php";
     ?>
     <!-- POKEMON NAVBAR MENU -->
-    <!-- <h1>
+    <h1>
         <?php
         //Creamos una pokedex vacia:
         $pokedex = array();
@@ -45,7 +45,6 @@
         //EXTRA = Mostramos el pokemon añadido:
         showPokemon($pokemon);
 
-
         //Muestra toda la pokedex que tenemos hasta ahora:
         showPokedex($pokedex);
 
@@ -55,7 +54,6 @@
         //Volvemos a mostrar toda la pokedex:
         showPokedex($pokedex);
 
-
         //En el ejercicio no sale pero para mostrar que funciona ejecutaré las dos funciones no indicadas:
         //Modifica un pokemon:
         modifyPokemon($pokedex, "Bulbasur", "0011", "Mega Bulbasur", "Jotho", "Plant, Poison, Fire", "170", "655.89", "With Evolution", "009.png");
@@ -64,7 +62,7 @@
         //Busca un pokemon:
         searchPokemonNumber($pokedex);
         ?>
-    </h1> -->
+    </h1>
 </body>
 
 </html>
