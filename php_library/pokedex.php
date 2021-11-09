@@ -30,54 +30,40 @@ function showPokemon($pokemon)
 function addPokemon($pokemon, &$pokedex)
 {
     if (searchPokemonNumber($pokedex, $pokemon) == -1) {
-        array_push($pokedex, array(
-            "Number" => $pokemon["Number"],
-            "Name" => $pokemon["Name"],
-            "Region" => $pokemon["Region"],
-            "Type" => $pokemon["Type"],
-            "Height" => $pokemon["Height"],
-            "Weight" => $pokemon["Weight"],
-            "Evolution" => $pokemon["Evolution"],
-            "Picture" => $pokemon["Picture"],
-        ));
+        array_push($pokedex, $pokemon);
         echo "The new pokemon in your pokedex is: " . $pokemon["Name"] . "<br>";
     } else {
         echo "Pokemon  already exist.";
     }
 }
 
-function dropPokemon(&$pokedex)
+function dropPokemon(&$pokedex, $Number)
 {
     echo "You are deleting Ivysur.";
     unset($pokedex[1]);
     $pokedex = array_filter($pokedex); //elimina las ubicaciones vacias del array.
 }
 
-function modifyPokemon(&$pokedex, $modifyPokemon, $Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
+function modifyPokemon(&$pokedex, $pokemon, $modifyPokemon, $Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
 {
-    $i = 0;
+    $position = 0;
     $notAvaliable = false;
-
-    while ($i <= count($pokedex) - 1 && $notAvaliable == false) {
-        if ($pokedex[$i]["Name"] == $modifyPokemon) {
-            echo "Pokemon name: " . $pokedex[$i]["Name"] . "<br>";
-            $notAvaliable = true;
-
-            $modifyPokemon = array(
-                "Number" => $Number,
-                "Name" => $Name,
-                "Region" => $Region,
-                "Type" => $Type,
-                "Height" => $Height,
-                "Weight" => $Weight,
-                "Evolution" => $Evolution,
-                "Picture" => $Picture
-            );
-
-            $pokedex[$i] = $modifyPokemon;
-        }
-        $i++;
+    if (searchPokemonNumber($pokedex, $pokemon) == -1) {
+        echo "Pokemon name: " . $pokedex[$position]["Name"] . "<br>";
+        $notAvaliable = true;
+        $modifyPokemon = array(
+            "Number" => $Number,
+            "Name" => $Name,
+            "Region" => $Region,
+            "Type" => $Type,
+            "Height" => $Height,
+            "Weight" => $Weight,
+            "Evolution" => $Evolution,
+            "Picture" => $Picture
+        );
+        $pokedex[$position] = $modifyPokemon;
     }
+    $position++;
 }
 
 function searchPokemonNumber($pokedex, $pokemon)

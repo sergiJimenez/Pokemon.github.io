@@ -11,7 +11,10 @@ addPokemon($pokemon, $pokedex);
 //EXTRA = Mostramos el pokemon añadido:
 showPokemon($pokemon);
 
-searchPokemonNumber($pokedex, $pokemon);
+
+//TRYYYYYYING:
+modifyPokemon($pokedex, $pokemon, "Bulbasur", "0011", "Mega Bulbasur", "Jotho", $Type = ("Plant, Poison, Fire"), "170", "655.89", "With Evolution", "009.png");
+showPokedex($pokedex);
 
 
 
