@@ -39,31 +39,19 @@ function addPokemon($pokemon, &$pokedex)
 
 function dropPokemon(&$pokedex, $Number)
 {
-    echo "You are deleting Ivysur.";
-    unset($pokedex[1]);
+
+    $position = searchPokemonNumber($pokedex, $Number);
+    echo "You are deleting " . $Number;
+    unset($pokedex[$Number]);
     $pokedex = array_filter($pokedex); //elimina las ubicaciones vacias del array.
 }
 
-function modifyPokemon(&$pokedex, $pokemon, $modifyPokemon, $Number, $Name, $Region, $Type, $Height, $Weight, $Evolution, $Picture)
+function modifyPokemon(&$pokedex, $pokemon)
 {
-    $position = 0;
-    $notAvaliable = false;
-    if (searchPokemonNumber($pokedex, $pokemon) == -1) {
-        echo "Pokemon name: " . $pokedex[$position]["Name"] . "<br>";
-        $notAvaliable = true;
-        $modifyPokemon = array(
-            "Number" => $Number,
-            "Name" => $Name,
-            "Region" => $Region,
-            "Type" => $Type,
-            "Height" => $Height,
-            "Weight" => $Weight,
-            "Evolution" => $Evolution,
-            "Picture" => $Picture
-        );
-        $pokedex[$position] = $modifyPokemon;
+    $position = searchPokemonNumber($pokedex, $pokemon);
+    if ($position != -1) {
+        $pokedex[$position] = $pokemon;
     }
-    $position++;
 }
 
 function searchPokemonNumber($pokedex, $pokemon)
@@ -82,7 +70,6 @@ function searchPokemonNumber($pokedex, $pokemon)
     }
     return $position;
 }
-
 
 function showPokedex(&$pokedex)
 {
