@@ -19,7 +19,7 @@
     include "php_partials/navbarMenu.php";
     ?>
     <!-- POKEMON NAVBAR MENU -->
-    <h1>
+    <!-- <h1>
         <?php
         //Creamos una pokedex vacia:
         $pokedex = array();
@@ -59,7 +59,7 @@
         //Busca un pokemon:
         searchPokemonNumber($pokedex, $pokemon);
         ?>
-    </h1>
+    </h1> -->
 </body>
 
 </html>
