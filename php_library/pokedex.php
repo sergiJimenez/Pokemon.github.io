@@ -39,11 +39,18 @@ function addPokemon($pokemon, &$pokedex)
 
 function dropPokemon(&$pokedex, $Number)
 {
-
-    $position = searchPokemonNumber($pokedex, $Number);
-    echo "You are deleting " . $Number;
-    unset($pokedex[$Number]);
-    $pokedex = array_filter($pokedex); //elimina las ubicaciones vacias del array.
+    $i = 0;
+    $exist = false;
+    while ($i <  count($pokedex) && !$exist) {
+        if ($pokedex[$i]["Number"] == $Number) {
+            $exist = true;
+            echo "You are deleting: " . $Number . ".";
+            unset($pokedex[$i]);
+            $pokedex = array_diff($pokedex, array("", 0, null)); //elimina las ubicaciones vacias del array.
+        } else {
+            $i++;
+        }
+    }
 }
 
 function modifyPokemon(&$pokedex, $pokemon)

@@ -25,16 +25,11 @@ addPokemon($pokemon, $pokedex);
 //EXTRA = Mostramos el pokemon añadido:
 showPokemon($pokemon);
 
-
 //Muestra toda la pokedex que tenemos hasta ahora:
 showPokedex($pokedex);
 
-//Dropping:
-dropPokemon($pokedex, "001");
-showPokedex($pokedex);
-/*
 //Elimina el pokemon:
-dropPokemon($pokedex, $Number);
+dropPokemon($pokedex, "001");
 
 //Modifica un pokemon:
 $pokemonMOD = createPokemon("001", "Mega Bulbasur", "Hoen", $Type = ("Plant, Poison"), "70", "6.9", "Without Evolution", "001.png");
@@ -43,4 +38,3 @@ showPokedex($pokedex);
 
 //Busca un pokemon:
 searchPokemonNumber($pokedex, $pokemon);
-*/
