@@ -49,7 +49,7 @@
         showPokedex($pokedex);
 
         //Elimina el pokemon:
-        dropPokemon($pokedex);
+        dropPokemon($pokedex, $pokemon);
 
         //Volvemos a mostrar toda la pokedex:
         showPokedex($pokedex);
@@ -60,7 +60,7 @@
         showPokedex($pokedex);
 
         //Busca un pokemon:
-        searchPokemonNumber($pokedex);
+        searchPokemonNumber($pokedex, $pokemon);
         ?>
     </h1>
 </body>
