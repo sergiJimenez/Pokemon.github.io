@@ -46,7 +46,7 @@ function dropPokemon(&$pokedex, $Number)
             $exist = true;
             echo "You are deleting: " . $Number . ".";
             unset($pokedex[$i]);
-            $pokedex = array_diff($pokedex, array("", 0, null)); //elimina las ubicaciones vacias del array.
+            $pokedex = array_values($pokedex); //elimina las ubicaciones vacias del array.
         } else {
             $i++;
         }
