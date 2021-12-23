@@ -41,8 +41,10 @@ function dropPokemon(&$pokedex, $Number)
 {
     $i = 0;
     $exist = false;
+    $position = searchPokemonNumber($pokedex, $Number);
+
     while ($i <  count($pokedex) && !$exist) {
-        if ($pokedex[$i]["Number"] == $Number) {
+        if ($position[$i]["Number"] == $Number) {
             $exist = true;
             echo "You are deleting: " . $Number . ".";
             unset($pokedex[$i]);
@@ -56,6 +58,7 @@ function dropPokemon(&$pokedex, $Number)
 function modifyPokemon(&$pokedex, $pokemon)
 {
     $position = searchPokemonNumber($pokedex, $pokemon);
+
     if ($position != -1) {
         $pokedex[$position] = $pokemon;
     }
@@ -67,7 +70,7 @@ function searchPokemonNumber($pokedex, $pokemon)
     $position = -1;
     $exist = false;
     while ($i <  count($pokedex) && !$exist) {
-        if ($pokedex[$i]["Number"] == $pokemon["Number"]) {
+        if ($pokedex[$i]["Number"] === $pokemon["Number"]) {
             $exist = true;
             $position = $i;
             echo "Pokemon position in array: " . $position;
