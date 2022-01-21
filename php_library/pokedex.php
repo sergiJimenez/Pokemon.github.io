@@ -31,9 +31,9 @@ function addPokemon($pokemon, &$pokedex)
 {
     if (searchPokemonNumber($pokedex, $pokemon) == -1) {
         array_push($pokedex, $pokemon);
-        echo "The new pokemon in your pokedex is: " . $pokemon["Name"] . "<br>";
+        $_SESSION['Success'] = "The new pokemon in your pokedex is: " . $pokemon["Name"] . "<br>";
     } else {
-        echo "Pokemon  already exist.";
+        $_SESSION['Error'] = "Pokemon already exist.";
     }
 }
 
@@ -46,10 +46,11 @@ function dropPokemon(&$pokedex, $Number)
     while ($i <  count($pokedex) && !$exist) {
         if ($position[$i]["Number"] == $Number) {
             $exist = true;
-            echo "You are deleting: " . $Number . ".";
+            $_SESSION['Success'] = "You are deleting: " . $Number . ".";
             unset($pokedex[$i]);
             $pokedex = array_values($pokedex); //elimina las ubicaciones vacias del array.
         } else {
+            $_SESSION['Error'] = "We can not delete the Pokemon.";
             $i++;
         }
     }

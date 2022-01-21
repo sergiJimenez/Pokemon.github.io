@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once('../php_library/pokedex.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,11 +22,32 @@
 
 <body class="bodyPokemon">
     <!-- POKEMON NAVBAR MENU -->
+    <header>
     <?php
     include '../php_partials/navbarMenu.php';
     ?>
+    </header>
     <!-- POKEMON NAVBAR MENU -->
     <div class="container-fluid p-4">
+        <?php
+        if(isset($_SESSION['Error'])){ ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php
+                echo $_SESSION['Error'];
+                unset($_SESSION['Error']);?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+            <?php
+        } elseif (isset($_SESSION['Message'])){?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php
+                echo $_SESSION['Error'];
+                unset($_SESSION['Error']);?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+        <?php
+        }
+        ?>
         <br>
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col d-flex align-items-stretch">
