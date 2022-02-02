@@ -16,13 +16,13 @@ if (isset($_SESSION['Pokedex'])){
 if (isset($_POST['Add'])){
     if ($_POST['Number'] === "" || !is_numeric($_POST['Number'])){
         $_SESSION['Error'] = "Unexisting number. Please write a number.";
-        header('Location: ' . '../php_views/'); //FALTA URL/////////////////////////////////////
+        header('Location: ' . '../php_views/pokemon_search.php');
     } else if ($_POST['Name'] === ""){
         $_SESSION['Error'] = "Unexisting name. Please write a name.";
-        header('Location: ' . '../php_views/'); //FALTA URL/////////////////////////////////////
+        header('Location: ' . '../php_views/pokemon_search.php');
     } else if ($_FILES['Picture']['Name'] === ""){
         $_SESSION['Error'] = "Unexisting picture. Please introduce a picture.";
-        header('Location: ' . '../php_views/'); //FALTA URL/////////////////////////////////////
+        header('Location: ' . '../php_views/pokemon_search.php');
     } else {
         //Tryin' to recover data of the picture:
         $pictureName = $_FILES['Picture']['Name']; //Property of name of picture input
@@ -53,17 +53,22 @@ if (isset($_POST['Add'])){
         //If error happens we'll save the data session and we back to pokemon.php
         if (isset($_SESSION['Error'])){
             $_SESSION['Pokemon'] = $pokemon;
-            header('Location: ' . '../php_views/'); //FALTA URL////////////////////////////////
+            header('Location: ' . '../php_views/pokemon_search.php');
         } else {
             //If error never happens we are going to copy the picture on pokemonsPicture folder
             move_uploaded_file($temporaryRoute, $fullRoute);
             //We are saving the pokedex session
             $_SESSION['Pokedex'] = $pokedex;
-            //we came back to ................................................
-            header('Location: ' . '../php_views/'); //FALTA URL////////////////////////////////
+            //We came back to ................................................
+            header('Location: ' . '../php_views/pokemon_list.php');
         }
         exit();
     }
+    //AIR
+    //AIR
+    //AIR
+    //AIR
+    //AIR
 //If we delete a Pokemon
 } else if(isset($_POST['Delete'])){
     $number = $_POST['Number'];
@@ -82,7 +87,7 @@ if (isset($_POST['Add'])){
         $_SESSION['Error'] = 'Pokemon can not be deleted. Please check what is happening.';
     }
     //We are back to Pokemon List
-    header(''); //FALTA URL///////////////////////////////////////////////////////////////////
+    header('Location: ' . '../php_views/pokemon_list.php');
     exit();
 //If we edit a Pokemon
 } else if(isset($_POST['Edit'])){
@@ -109,6 +114,6 @@ if (isset($_POST['Add'])){
     //We save the pokedex on the session
     $_SESSION['Pokedex'] = $pokedex;
     //We are back to pokemonList
-    header(''); //FALTA URL///////////////////////////////////////////////////////////////////
+    header('Location: ' . '../php_views/pokemon_list.php');
     exit();
 }
