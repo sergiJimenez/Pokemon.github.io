@@ -51,218 +51,38 @@ require_once('../php_library/pokedex.php');
         <br>
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col d-flex align-items-stretch">
+                <?php
+                if (isset($_SESSION['Pokedex'])){
+                    $pokedex = $_SESSION['Pokedex'];
+                } else {
+                    $pokedex = [];
+                }
+                foreach ($pokedex as $pokemon) {
+                ?>
                 <div class="card border-secondary">
-                    <img src="../media/001.png" class="card-img-top" alt="Card image cap">
+                    <img src="<?php echo $pokemon['Picture'] ?>" class="card-img-top" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">
-                            001 - Bulbasur
-                        </h5>
-                        <span class="badge bg-warning text-dark">Planta</span>
-                        <span class="badge bg-warning text-dark">Veneno</span>
+                        <h5 class="card-title"><?php echo $pokemon['Number'] . ' - ' . $pokemon['Name'] ?></h5>
+                        <p class="card-text">
+                            <?php
+                            foreach ($pokemon['Type'] as $type){?>
+                                <span class="badge bg-warning text-dark"><?php echo $type ?></span>
+                            <?php
+                            }
+                            ?>
+                        </p>
                     </div>
                     <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
+                        <form action="../php_controllers/pokemonController.php" method="POST">
+                            <button type="submit" name="delete" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+                            <button type="submit" name="edit" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                            <input type="hidden" name="Number" value="<?php echo $pokemon['Number'] ?>">
+                        </form>
                     </div>
                 </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/002.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            002 - Ivysaur
-                        </h5>
-                        <span class="badge bg-warning text-dark">Planta</span>
-                        <span class="badge bg-warning text-dark">Veneno</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/003.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            003 - Venusaur
-                        </h5>
-                        <span class="badge bg-warning text-dark">Planta</span>
-                        <span class="badge bg-warning text-dark">Veneno</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/004.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            004 - Charmander
-                        </h5>
-                        <span class="badge bg-warning text-dark">Fuego</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/005.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            005 - Charmeleon
-                        </h5>
-                        <span class="badge bg-warning text-dark">Fuego</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/006.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            006 - Charizard
-                        </h5>
-                        <span class="badge bg-warning text-dark">Fuego</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/007.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            007 - Squirtle
-                        </h5>
-                        <span class="badge bg-warning text-dark">Agua</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/008.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            008 - Wartortle
-                        </h5>
-                        <span class="badge bg-warning text-dark">Agua</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <div class="col d-flex align-items-stretch">
-                <div class="card border-secondary">
-                    <img src="../media/009.png" class="card-img-top" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            009 - Blastoise
-                        </h5>
-                        <span class="badge bg-warning text-dark">Agua</span>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button href="#" type="button" class="btn btn-outline-danger">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button href="#" type="button" class="btn btn-outline-primary">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
             </div>
             <!-- AIR -->
             <!-- AIR -->
@@ -271,8 +91,8 @@ require_once('../php_library/pokedex.php');
             <!-- AIR -->
         </div>
     </div>
-    <div class="position-fixed text-dark position-absolute bottom-0 end-0 m-5" id="buttonAdd" style="height: 10px; width: 10px;">
-        <a href="pokemon_search.php" type="button" class="btn bg-warning text-dark rounded-circle">
+    <div class="position-fixed text-dark position-absolute bottom-0 end-0 m-5" id="buttonAdd" style="height: 10px; width: 10px; z-index: 100">
+        <a href="../php_views/pokemon_search.php" type="button" class="btn bg-warning text-dark rounded-circle">
             <i class="bi bi-plus-lg"></i>
         </a>
     </div>

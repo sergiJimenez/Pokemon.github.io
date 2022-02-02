@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once('../php_library/pokedex.php');
+if (isset($_SESSION['pokemon_search'])){
+    $pokemonSearch = $_SESSION['pokemon_search'];
+    unset($_SESSION['pokemon_search']);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,11 +22,34 @@
 
 <body>
     <!-- POKEMON NAVBAR MENU -->
+    <header>
     <?php
-    include '../php_partials/navbarMenu.php';
+    require_once '../php_partials/navbarMenu.php';
     ?>
+    </header>
     <!-- POKEMON NAVBAR MENU -->
     <div class="container-fluid p-4">
+        <?php
+        if (isset($_SESSION['Error'])){?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php
+            echo $_SESSION['Error'];
+            unset($_SESSION['Error']);
+            ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
+    } elseif (isset($_SESSION['Message'])){?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php
+            echo $_SESSION['Error'];
+            unset($_SESSION['Error']);
+            ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php  
+    }
+    ?>
         <div class="card">
             <div class="card-header bg-secondary">
                 <a class="text-light" style="text-decoration: none;">
@@ -32,7 +63,7 @@
                 <!-- AIR -->
                 <!-- AIR -->
                 <!-- AIR -->
-                <form>
+                <form action="../php_controllers/pokemonController.php" method="POST" enctype="multipart/form-data">
                     <!-- Section 1 -->
                     <div class="row">
                         <label for="pokemonNumber" class="col-sm-3 col-form-label">Número</label>
@@ -88,72 +119,128 @@
                         <div class="col-sm-7">
                             <!-- Type1 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type1" name="type" value="Planta">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Planta">
                                 <label for="type1" class="row-sm-4">
                                     Planta
                                 </label>
                             </div>
                             <!-- Type2 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type2" name="type" value="Veneno">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Veneno">
                                 <label for="type2" class="row-sm-4">
                                     Veneno
                                 </label>
                             </div>
                             <!-- Type3 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type3" name="type" value="Fuego">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Fuego">
                                 <label for="type3" class="row-sm-4">
                                     Fuego
                                 </label>
                             </div>
                             <!-- Type4 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type4" name="type" value="Volador">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Volador">
                                 <label for="type4" class="row-sm-4">
                                     Volador
                                 </label>
                             </div>
                             <!-- Type5 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type5" name="type" value="Agua">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Agua">
                                 <label for="type5" class="row-sm-4">
                                     Agua
                                 </label>
                             </div>
                             <!-- Type6 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type6" name="type" value="Electrico">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Electrico">
                                 <label for="type6" class="row-sm-4">
                                     Eléctrico
                                 </label>
                             </div>
                             <!-- Type7 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type7" name="type" value="Hada">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Hada">
                                 <label for="type7" class="row-sm-4">
                                     Hada
                                 </label>
                             </div>
                             <!-- Type8 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type8" name="type" value="Bicho">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Bicho">
                                 <label for="type8" class="row-sm-4">
                                     Bicho
                                 </label>
                             </div>
                             <!-- Type9 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type9" name="type" value="Lucha">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Lucha">
                                 <label for="type9" class="row-sm-4">
                                     Lucha
                                 </label>
                             </div>
                             <!-- Type10 -->
                             <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="type10" name="type" value="Psiquico">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Psiquico">
                                 <label for="type10" class="row-sm-4">
                                     Psíquico
+                                </label>
+                            </div>
+                            <!-- Type11 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Fantasma">
+                                <label for="type11" class="row-sm-4">
+                                    Fantasma
+                                </label>
+                            </div>
+                            <!-- Type12 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Siniestro">
+                                <label for="type12" class="row-sm-4">
+                                    Siniestro
+                                </label>
+                            </div>
+                            <!-- Type13 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Hielo">
+                                <label for="type13" class="row-sm-4">
+                                    Hielo
+                                </label>
+                            </div>
+                            <!-- Type14 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Roca">
+                                <label for="type14" class="row-sm-4">
+                                    Roca
+                                </label>
+                            </div>
+                            <!-- Type15 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Tierra">
+                                <label for="type15" class="row-sm-4">
+                                    Tierra
+                                </label>
+                            </div>
+                            <!-- Type16 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Acero">
+                                <label for="type16" class="row-sm-4">
+                                    Acero
+                                </label>
+                            </div>
+                            <!-- Type17 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Normal">
+                                <label for="type17" class="row-sm-4">
+                                    Normal
+                                </label>
+                            </div>
+                            <!-- Type18 -->
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" id="Type[]" name="type" value="Dragon">
+                                <label for="type18" class="row-sm-4">
+                                    Dragon
                                 </label>
                             </div>
                         </div>
@@ -231,8 +318,8 @@
                     <!-- AIR -->
                     <!-- Section 9 -->
                     <div class="text-end">
-                        <a class="btn btn-secondary" href="pokemon_list.php">Cancelar</a>
-                        <input class="btn btn-primary" type="submit" value="Aceptar">
+                        <button class="btn btn-primary" type="submit" name="Add">Aceptar
+                        <a class="btn btn-secondary" href="pokemon_list.php" name="Cancel">Cancelar</a>
                     </div>
                 </form>
             </div>
