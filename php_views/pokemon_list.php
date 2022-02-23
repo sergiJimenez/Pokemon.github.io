@@ -11,7 +11,7 @@ require_once('../php_library/pokedex.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon List</title>
     <!-- CSS LINKS -->
-    <link rel="stylesheet" href="../style/pokemon_list.css">
+    <link rel="stylesheet" href="../style/index.css">
     <!-- CSS LINKS -->
     <!-- BOOTSTRAP LINKS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
@@ -60,12 +60,12 @@ require_once('../php_library/pokedex.php');
                 foreach ($pokedex as $pokemon) {
                 ?>
                 <div class="card border-secondary">
-                    <img src="<?php echo $pokemon['Picture'] ?>" class="card-img-top" alt="Card image cap">
+                    <img src="<?php echo $pokemon['picture'] ?>" class="card-img-top" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $pokemon['Number'] . ' - ' . $pokemon['Name'] ?></h5>
+                        <h5 class="card-title"><?php echo $pokemon['number'] . ' - ' . $pokemon['name'] ?></h5>
                         <p class="card-text">
                             <?php
-                            foreach ($pokemon['Type'] as $type){?>
+                            foreach ($pokemon['type'] as $type){?>
                                 <span class="badge bg-warning text-dark"><?php echo $type ?></span>
                             <?php
                             }
@@ -76,7 +76,7 @@ require_once('../php_library/pokedex.php');
                         <form action="../php_controllers/pokemonController.php" method="POST">
                             <button type="submit" name="delete" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
                             <button type="submit" name="edit" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                            <input type="hidden" name="Number" value="<?php echo $pokemon['Number'] ?>">
+                            <input type="hidden" name="number" value="<?php echo $pokemon['number'] ?>">
                         </form>
                     </div>
                 </div>
@@ -84,11 +84,6 @@ require_once('../php_library/pokedex.php');
                 }
                 ?>
             </div>
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
-            <!-- AIR -->
         </div>
     </div>
     <div class="position-fixed text-dark position-absolute bottom-0 end-0 m-5" id="buttonAdd" style="height: 10px; width: 10px; z-index: 100">
