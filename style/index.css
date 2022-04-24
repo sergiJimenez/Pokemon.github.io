@@ -3,3 +3,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.background_search {
+  background-image: url("../media/Pokedex.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.whiteSmoke {
+  background-color: rgb(0 0 0 / 10%);;
+}

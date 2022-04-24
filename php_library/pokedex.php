@@ -62,16 +62,21 @@ function modifyPokemon(&$pokedex, $pokemon)
 
     if ($position != -1) {
         $pokedex[$position] = $pokemon;
+        $_SESSION["Success"] = "Congratulations! The pokemon has been modified succesfully!";
+    } else {
+        $_SESSION["Error"] = "Sorry! The pokemon that you tried to modify does not exists.";
     }
 }
+
+//Cuando llegues comenta la funcion de arriba y ponla como la de Iago
 
 function searchPokemonNumber($pokedex, $pokemon)
 {
     $i = 0;
     $position = -1;
     $exist = false;
-    while ($i <  count($pokedex) && !$exist) {
-        if ($pokedex[$i]["Number"] === $pokemon["Number"]) {
+    while ($i < count($pokedex) && !$exist) {
+        if ($pokedex[$i]["Number"] == $pokemon["Number"]) {
             $exist = true;
             $position = $i;
             echo "Pokemon position in array: " . $position;
