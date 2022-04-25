@@ -46,34 +46,15 @@ function addPokemon($pokemon, &$pokedex)
 
 function dropPokemon($Number, &$pokedex)
 {
-    $i = 0;
-    $exist = false;
     $position = searchPokemonNumber($Number, $pokedex);
 
-    while ($i <  count($pokedex) && !$exist) {
-        if ($position[$i]["Number"] == $Number) {
-            $exist = true;
-            $_SESSION['Success'] = "Pokemon borrado correctamente.<br>";
-            unset($pokedex[$i]);
-            $pokedex = array_values($pokedex); //elimina las ubicaciones vacias del array.
-        } else {
-            $_SESSION['Error'] = "We can not delete the Pokemon.";
-            $i++;
-        }
+    if ($position == -1) {
+        $_SESSION['Error'] = "We can not delete the Pokemon.";
+    } else {
+        array_splice($pokedex, $position, 1);
+        $_SESSION['Success'] = "Pokemon borrado correctamente.<br>";
     }
 }
-
-// function modifyPokemon(&$pokedex, $pokemon)
-// {
-//     $position = searchPokemonNumber($pokedex, $pokemon);
-
-//     if ($position != -1) {
-//         $pokedex[$position] = $pokemon;
-//         $_SESSION["Success"] = "Congratulations! The pokemon has been modified succesfully!";
-//     } else {
-//         $_SESSION["Error"] = "Sorry! The pokemon that you tried to modify does not exists.";
-//     }
-// }
 
 function modifyPokemon(
     &$pokedex,
