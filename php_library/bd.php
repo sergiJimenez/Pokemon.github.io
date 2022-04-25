@@ -99,7 +99,7 @@ function selectTypesPokemon($connection, $idPokemon){
     }
 }
 
-// Insert Pokemon
+// FIXME: Insert Pokemon
 function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWeight, $pokemonEvolution, $pokemonPicture, $pokemonTypes, $pokemonRegion){
     $connection = openBd();
     //Select ID Region
