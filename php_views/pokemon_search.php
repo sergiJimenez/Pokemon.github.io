@@ -310,7 +310,6 @@ if (isset($_SESSION['Pokemon'])){
                                 <div class="col-sm">
                                     <div class="custom-file">
                                         <input type="file" id="Picture" class="form-control" name="Picture"><br><br>
-                                        <label class="custom-file-label" for="Picture">Seleccionar imagen</label>
                                     </div>
                                 </div>
                             </div>

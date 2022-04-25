@@ -20,22 +20,23 @@ if (isset($_POST['Add'])){
     } else if ($_POST['Name'] == ""){
         $_SESSION['Error'] = "Unexisting name. Please write a name.";
         header('Location: ' . '../php_views/pokemon_search.php');
-    // } else if ($_FILES['Picture']['NamePic'] == ""){
-    //     $_SESSION['Error'] = "Unexisting picture. Please introduce a picture.";
-    //     header('Location: ' . '../php_views/pokemon_search.php');
+    } else if ($_FILES['Picture']['name'] == ""){
+        $_SESSION['Error'] = "Unexisting picture. Please introduce a picture.";
+        header('Location: ' . '../php_views/pokemon_search.php');
     } else {
         //Tryin' to recover data of the picture:
-        $pictureName = $_FILES['Picture']['NamePic']; //Property of name of picture input
-        $pictureType = $_FILES['Picture']['TypePic']; //Property of type of picture input
-        $pictureSize = $_FILES['Picture']['SizePic']; //Property of picture size
-        $temporaryRoute = $_FILES['Picture']['temporalName']; //Folder name where we save, temporally, the name of the pictures before those once uploads to the server
-        $destinationFolder = "../users/"; //Findin' the folder where we upload the pictures on the server
+        $pictureName = $_FILES['Picture']['name']; //Property of name of picture input
+        $pictureType = $_FILES['Picture']['type']; //Property of type of picture input
+        $pictureSize = $_FILES['Picture']['size']; //Property of picture size
+        $temporaryRoute = $_FILES['Picture']['tmp_name']; //Folder name where we save, temporally, the name of the pictures before those once uploads to the server
+        $destinationFolder = "/Pokemon.github.io/users/"; //Findin' the folder where we upload the pictures on the server
 
         //Setting the number:
         $length = 3;
         $formatNumber = str_pad($_POST['Number'], $length, "0", STR_PAD_LEFT);
         $_POST['Number'] = $formatNumber;
         $fullRoute = $destinationFolder . $_POST['Number'] . '.png'; //Telling it which picture it have to take of the server
+        $imagePATH = '../users/' . $_POST['Number'] . '.png';
         if (is_null($_POST['Type'])){
             $_POST['Type'] = [" "]; //Array null = The Nothin'
         }
@@ -52,7 +53,7 @@ if (isset($_POST['Add'])){
             header('Location: ' . '../php_views/pokemon_search.php');
         } else {
             //If error never happens we are going to copy the picture on pokemonsPicture folder
-            move_uploaded_file($temporaryRoute, $fullRoute);
+            move_uploaded_file($temporaryRoute, $imagePATH);
             //We are saving the pokedex session
             $_SESSION['Pokedex'] = $pokedex;
             //We came back to ................................................
