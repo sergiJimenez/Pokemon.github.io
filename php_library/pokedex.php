@@ -29,19 +29,26 @@ function showPokemon($pokemon)
 
 function addPokemon($pokemon, &$pokedex)
 {
-    if (searchPokemonNumber($pokedex, $pokemon) == -1) {
+    $pokemonNumber = $pokemon['Number'];
+    if (searchPokemonNumber($pokemonNumber, $pokedex) == -1) {
         array_push($pokedex, $pokemon);
         $_SESSION['Success'] = "Pokemon añadido correctamente.<br>";
     } else {
         $_SESSION['Error'] = "Pokemon already exist.";
     }
+    // if (searchPokemonNumber($pokedex, $pokemon) == -1) {
+    //     array_push($pokedex, $pokemon);
+    //     $_SESSION['Success'] = "Pokemon añadido correctamente.<br>";
+    // } else {
+    //     $_SESSION['Error'] = "Pokemon already exist.";
+    // }
 }
 
-function dropPokemon(&$pokedex, $Number)
+function dropPokemon($Number, &$pokedex)
 {
     $i = 0;
     $exist = false;
-    $position = searchPokemonNumber($pokedex, $Number);
+    $position = searchPokemonNumber($Number, $pokedex);
 
     while ($i <  count($pokedex) && !$exist) {
         if ($position[$i]["Number"] == $Number) {
@@ -56,27 +63,52 @@ function dropPokemon(&$pokedex, $Number)
     }
 }
 
-function modifyPokemon(&$pokedex, $pokemon)
-{
-    $position = searchPokemonNumber($pokedex, $pokemon);
+// function modifyPokemon(&$pokedex, $pokemon)
+// {
+//     $position = searchPokemonNumber($pokedex, $pokemon);
 
-    if ($position != -1) {
-        $pokedex[$position] = $pokemon;
-        $_SESSION["Success"] = "Congratulations! The pokemon has been modified succesfully!";
-    } else {
+//     if ($position != -1) {
+//         $pokedex[$position] = $pokemon;
+//         $_SESSION["Success"] = "Congratulations! The pokemon has been modified succesfully!";
+//     } else {
+//         $_SESSION["Error"] = "Sorry! The pokemon that you tried to modify does not exists.";
+//     }
+// }
+
+function modifyPokemon(
+    &$pokedex,
+    $pokemon2Modify,
+    $pokemonNumber,
+    $pokemonName,
+    $pokemonRegion,
+    $pokemonType,
+    $pokemonHeight,
+    $pokemonWeight,
+    $pokemonEvolution,
+    $pokemonPicture) {
+
+    $position = searchPokemonNumber($pokemon2Modify, $pokedex);
+    if($position == -1){
         $_SESSION["Error"] = "Sorry! The pokemon that you tried to modify does not exists.";
+    } else {
+        $pokedex[$position]["Number"] = $pokemonNumber;
+        $pokedex[$position]["Name"] = $pokemonName;
+        $pokedex[$position]["Region"] = $pokemonRegion;
+        $pokedex[$position]["Type"] = $pokemonType;
+        $pokedex[$position]["Height"] = $pokemonHeight;
+        $pokedex[$position]["Weight"] = $pokemonWeight;
+        $pokedex[$position]["Evolution"] = $pokemonEvolution;
+        $pokedex[$position]["Picture"] = $pokemonPicture;
     }
 }
 
-//Cuando llegues comenta la funcion de arriba y ponla como la de Iago
-
-function searchPokemonNumber($pokedex, $pokemon)
+function searchPokemonNumber($pokemonNumber, $pokedex)
 {
     $i = 0;
     $position = -1;
     $exist = false;
     while ($i < count($pokedex) && !$exist) {
-        if ($pokedex[$i]["Number"] == $pokemon["Number"]) {
+        if ($pokedex[$i]["Number"] == $pokemonNumber) {
             $exist = true;
             $position = $i;
             echo "Pokemon position in array: " . $position;
@@ -86,6 +118,22 @@ function searchPokemonNumber($pokedex, $pokemon)
     }
     return $position;
 }
+// function searchPokemonNumber($, $pokedex)
+// {
+//     $i = 0;
+//     $position = -1;
+//     $exist = false;
+//     while ($i < count($pokedex) && !$exist) {
+//         if ($pokedex[$i]["Number"] == $pokemon["Number"]) {
+//             $exist = true;
+//             $position = $i;
+//             echo "Pokemon position in array: " . $position;
+//         } else {
+//             $i++;
+//         }
+//     }
+//     return $position;
+// }
 
 function showPokedex(&$pokedex)
 {

@@ -20,14 +20,14 @@ if (isset($_POST['Add'])){
     } else if ($_POST['Name'] == ""){
         $_SESSION['Error'] = "Unexisting name. Please write a name.";
         header('Location: ' . '../php_views/pokemon_search.php');
-    // } else if ($_FILES['Picture']['Name'] == ""){
+    // } else if ($_FILES['Picture']['NamePic'] == ""){
     //     $_SESSION['Error'] = "Unexisting picture. Please introduce a picture.";
     //     header('Location: ' . '../php_views/pokemon_search.php');
     } else {
         //Tryin' to recover data of the picture:
-        $pictureName = $_FILES['Picture']['Name']; //Property of name of picture input
-        $pictureType = $_FILES['Picture']['Type']; //Property of type of picture input
-        $pictureSize = $_FILES['Picture']['Size']; //Property of picture size
+        $pictureName = $_FILES['Picture']['NamePic']; //Property of name of picture input
+        $pictureType = $_FILES['Picture']['TypePic']; //Property of type of picture input
+        $pictureSize = $_FILES['Picture']['SizePic']; //Property of picture size
         $temporaryRoute = $_FILES['Picture']['temporalName']; //Folder name where we save, temporally, the name of the pictures before those once uploads to the server
         $destinationFolder = "../users/"; //Findin' the folder where we upload the pictures on the server
 
@@ -70,7 +70,7 @@ if (isset($_POST['Add'])){
     $pokemonNumber = $_POST['Number'];
     $position = searchPokemonNumber($pokemonNumber, $pokedex);
     $pokemon = $pokedex[$position];
-    dropPokemon($pokedex, $number);
+    dropPokemon($pokemonNumber, $pokedex);
 
     $destinationFolder = "../media/PokemonsImages/";
     $fullRoute = $destinationFolder . $_POST['Number'] . '.png';
@@ -88,7 +88,7 @@ if (isset($_POST['Add'])){
 } else if(isset($_POST['Edit'])){
     $pokemonNumber = $_POST['Number']; //Take the Pokemon number
     //We are searching the pokemon by the number
-    $position = searchPokemonNumber($pokedex, $pokemonNumber);
+    $position = searchPokemonNumber($pokemonNumber, $pokedex);
     $pokemon = $pokedex[$position];
     //Savin' the pokemon on the session
     $_SESSION['Pokemon'] = $pokemon;
@@ -100,7 +100,7 @@ if (isset($_POST['Add'])){
     if (is_null($_POST['Type'])){
         $_POST['Type'] = [" "];
     }
-    $temporaryRoute = $_FILES['Picture']['TemporalName'];
+    $temporaryRoute = $_FILES['Picture']['temporalName'];
     $destinationFolder = "../users/";
     $fullRouteImage = $destinationFolder . $_POST['Number'] . '.png';
     modifyPokemon($pokedex, $_POST['Number'], $_POST['Number'], $_POST['Name'], $_POST['Region'], $_POST['Type'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $fullRouteImage);

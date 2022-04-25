@@ -1,9 +1,9 @@
 <?php
 session_start();
 require_once('../php_library/pokedex.php');
-if (isset($_SESSION['pokemon_search'])){
-    $pokemonSearch = $_SESSION['pokemon_search'];
-    unset($_SESSION['pokemon_search']);
+if (isset($_SESSION['Pokemon'])){
+    $pokemon = $_SESSION['Pokemon'];
+    unset($_SESSION['Pokemon']);
 }
 ?>
 <!DOCTYPE html>
@@ -82,7 +82,7 @@ if (isset($_SESSION['pokemon_search'])){
                             <div class="row pt-2">
                                 <label for="pokemonName" class="col-sm-3 col-form-label">Nombre</label>
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" id="Name" name="Name" value="<?php echo $pokemon['Number']?>">
+                                    <input type="text" class="form-control" id="Name" name="Name" value="<?php echo $pokemon['Name']?>">
                                 </div>
                             </div>
                             <!-- AIR -->

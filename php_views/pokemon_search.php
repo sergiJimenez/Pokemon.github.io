@@ -1,9 +1,9 @@
 <?php
 session_start();
 require_once('../php_library/pokedex.php');
-if (isset($_SESSION['pokemon_search'])){
-    $pokemonSearch = $_SESSION['pokemon_search'];
-    unset($_SESSION['pokemon_search']);
+if (isset($_SESSION['Pokemon'])){
+    $pokemon = $_SESSION['Pokemon'];
+    unset($_SESSION['Pokemon']);
 }
 ?>
 <!DOCTYPE html>
@@ -308,8 +308,9 @@ if (isset($_SESSION['pokemon_search'])){
                             <div class="row pt-2">
                                 <label for="Picture" class="col-sm-3 col-form-label">Imagen</label>
                                 <div class="col-sm">
-                                    <div class="custom-flie">
+                                    <div class="custom-file">
                                         <input type="file" id="Picture" class="form-control" name="Picture"><br><br>
+                                        <label class="custom-file-label" for="Picture">Seleccionar imagen</label>
                                     </div>
                                 </div>
                             </div>
