@@ -3,7 +3,8 @@
 //Initial session.
 session_start();
 require_once('../php_library/pokedex.php');
-
+require_once('../php_library/bd.php');
+$connection = openBd();
 //If a Pokedex session is already exist I want to recover the data.
 //If it's not existing, creating a new Pokedex session.
 if (isset($_SESSION['Pokedex'])){

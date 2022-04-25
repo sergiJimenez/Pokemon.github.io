@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../php_library/pokedex.php');
+require_once('../php_library/pokedex.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">

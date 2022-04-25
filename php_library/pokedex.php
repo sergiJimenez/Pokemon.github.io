@@ -99,22 +99,6 @@ function searchPokemonNumber($pokemonNumber, $pokedex)
     }
     return $position;
 }
-// function searchPokemonNumber($, $pokedex)
-// {
-//     $i = 0;
-//     $position = -1;
-//     $exist = false;
-//     while ($i < count($pokedex) && !$exist) {
-//         if ($pokedex[$i]["Number"] == $pokemon["Number"]) {
-//             $exist = true;
-//             $position = $i;
-//             echo "Pokemon position in array: " . $position;
-//         } else {
-//             $i++;
-//         }
-//     }
-//     return $position;
-// }
 
 function showPokedex(&$pokedex)
 {

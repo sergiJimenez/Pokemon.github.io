@@ -1,9 +1,17 @@
 <?php
 session_start();
 require_once('../php_library/pokedex.php');
+require_once('../php_library/bd.php');
+
+$connection = openBd();
+
 if (isset($_SESSION['Pokemon'])){
     $pokemon = $_SESSION['Pokemon'];
     unset($_SESSION['Pokemon']);
+}
+if (isset($_SESSION['Type'])){
+    $Type = $_SESSION['Type'];
+    unset($_SESSION['Type']);
 }
 ?>
 <!DOCTYPE html>
