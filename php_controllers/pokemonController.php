@@ -70,7 +70,7 @@ if (isset($_POST['Add'])){
 
     $result = deletePokemon($connection, $id);
     if ($result == true){
-        if (unlink($fullCompletePicture)){
+        if (unlink($imagePATH)){
             $_SESSION['Pokedex'] = $pokedex;
             $_SESSION['Success'] = "Pokemon deleted correctly!";
         } else{
