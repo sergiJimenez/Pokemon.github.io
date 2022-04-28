@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('../php_library/pokedex.php');
 require_once('../php_library/bd.php');
 

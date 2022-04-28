@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once('../php_library/pokedex.php');
+require_once('../php_library/bd.php');
 if (isset($_SESSION['Pokemon'])){
     $pokemon = $_SESSION['Pokemon'];
     unset($_SESSION['Pokemon']);
@@ -31,27 +31,29 @@ if (isset($_SESSION['Pokemon'])){
             </header>
             <!-- POKEMON NAVBAR MENU -->
             <div class="container-fluid p-4">
-                <?php
-                    if (isset($_SESSION['Error'])){?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <?php
-                        echo $_SESSION['Error'];
-                        unset($_SESSION['Error']);
-                        ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                <span>
                     <?php
-                    } elseif (isset($_SESSION['Success'])){?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        if (isset($_SESSION['Error'])){?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <?php
-                            echo $_SESSION['Success'];
-                            unset($_SESSION['Success']);
+                            echo $_SESSION['Error'];
+                            unset($_SESSION['Error']);
                             ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    <?php
-                    }
-                ?>
+                        <?php
+                        } elseif (isset($_SESSION['Success'])){?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <?php
+                                echo $_SESSION['Success'];
+                                unset($_SESSION['Success']);
+                                ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php
+                        }
+                    ?>
+                </span>
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <a class="text-light" style="text-decoration: none;">
@@ -269,7 +271,7 @@ if (isset($_SESSION['Pokemon'])){
                             <div class="row pt-2">
                                 <label for="weight" class="col-sm-3 col-form-label">Peso</label>
                                 <div class="input-group col-sm">
-                                    <input type="number" class="form-control" id="Weight" name="Weight" min="0" step="0.01" required><!--  ___________________DECIMALS______________________  -->
+                                    <input type="number" class="form-control" id="Weight" name="Weight" min="0" step="0.01" required><!--  __DECIMALS__  -->
                                     <span class="input-group-text" id="addon-wrapping">kg</span>
                                 </div>
                             </div>

@@ -1,7 +1,6 @@
 <?php
-session_start();
 require_once('../php_library/pokedex.php');
-require_once('../php_library/pokedex.php');
+require_once('../php_library/bd.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,9 +23,9 @@ require_once('../php_library/pokedex.php');
 <body class="bodyPokemon">
     <!-- POKEMON NAVBAR MENU -->
     <header>
-    <?php
-    include '../php_partials/navbarMenu.php';
-    ?>
+        <?php
+        include '../php_partials/navbarMenu.php';
+        ?>
     </header>
     <!-- POKEMON NAVBAR MENU -->
     <div class="container-fluid p-4">
@@ -53,11 +52,12 @@ require_once('../php_library/pokedex.php');
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col d-flex align-items-stretch">
                 <?php
-                if (isset($_SESSION['Pokedex'])){
-                    $pokedex = $_SESSION['Pokedex'];
-                } else {
-                    $pokedex = [];
-                }
+                // if (isset($_SESSION['Pokedex'])){
+                //     $pokedex = $_SESSION['Pokedex'];
+                // } else {
+                //     $pokedex = [];
+                // }
+                $pokedex = selectPokemon($connection);
                 foreach ($pokedex as $pokemon) {
                 ?>
                 <div class="card border-secondary">
@@ -66,17 +66,17 @@ require_once('../php_library/pokedex.php');
                         <h5 class="card-title"><?php echo $pokemon['Number'] . ' - ' . $pokemon['Name'] ?></h5>
                         <p class="card-text">
                             <?php
-                             if(is_array($pokemon['Type']) || is_object($pokemon['Type'])){
-                                foreach ($pokemon['Type'] as $Type) { ?>
-                                    <span class="badge bg-warning text-dark"><?php echo $Type; ?></span>
-                                <?php }} ?>
+                            $types = selectTypesPokemon($connection, $pokemon['id']);
+                            foreach ($types as $type){?>                     
+                                <span class="badge bg-warning text-dark"><?php print_r($type['Name']); ?></span>
+                            <?php } ?>
                         </p>
                     </div>
                     <div class="card-footer text-end">
                         <form action="../php_controllers/pokemonController.php" method="POST">
                             <button type="submit" name="Delete" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
                             <button type="submit" name="Edit" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
-                            <input type="hidden" name="Number" value="<?php echo $pokemon['Number'] ?>">
+                            <input type="hidden" name="Number" value="<?php echo $pokemon['id'] ?>">
                         </form>
                     </div>
                 </div>

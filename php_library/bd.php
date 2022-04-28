@@ -1,6 +1,6 @@
 <?php
 session_start();
-//Open dataBase
+// Open dataBase
 function openBd(){
     $servername = "localhost";
     $username = "root";
@@ -16,12 +16,12 @@ function openBd(){
     }
 }
 
-//Close dataBase
+// Close dataBase
 function closeBd(){
     return null;
 }
 
-//Select all Pokemons
+// Select all Pokemons
 function selectAllPokemon($connection){
     $pokemonsArray = [];
     try {
@@ -46,7 +46,7 @@ function selectAllPokemon($connection){
     }
 }
 
-//Select all type of Pokemons
+// Select all type of Pokemons
 function selectTypes(){
     $connection = openBd();
     $consult = "SELECT * FROM tipos";
@@ -57,7 +57,7 @@ function selectTypes(){
     return $result;
 }
 
-//Select all regions
+// Select all regions
 function selectRegion(){
     $connection = openBd();
     $consult = "SELECT * FROM regiones";
@@ -99,7 +99,7 @@ function selectTypesPokemon($connection, $idPokemon){
     }
 }
 
-// FIXME: Insert Pokemon
+// Insert Pokemon
 function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWeight, $pokemonEvolution, $pokemonPicture, $pokemonTypes, $pokemonRegion){
     $connection = openBd();
     //Select ID Region
@@ -124,50 +124,35 @@ function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWei
 
     foreach ($pokemonTypes as $type_name) {
     // Select type
-    $consulta3 = "SELECT id from tipos WHERE nombre = :nombreTipo";
-    $consultaSelect3 = $connection->prepare($consulta3);
-    $consultaSelect3->bindParam(':nombreTipo', $type_name);
-    $consultaSelect3->execute();
-    $resultSelectTipo = $consultaSelect3->fetchAll();
-    // echo 'resultSelectTipo:    ' . var_dump($resultSelectTipo) . '<br>';
-    $result12 = $resultSelectTipo[0]['id'];
-    // echo 'resultSelectTipo:    ' .  var_dump($result12) . '<br>';
-    // var_dump('RES 12:    ' . $result12 . '<br>');
-    //seleccionar pokemon id
-    $consulta4 = "SELECT id from pokemons WHERE numero = :numeroPokemon";
-    $consultaSelect4 = $connection->prepare($consulta4);
-    $consultaSelect4->bindParam(':numeroPokemon', $p_numero);
-    $consultaSelect4->execute();
-    $resultIdPokemon = $consultaSelect4->fetchAll();
-    $result123 = $resultIdPokemon[0]['id'];
-    // var_dump('RES 123:    ' . $result123 . '<br>');
-    //insertar tipo en BD
-    $consulta5 = "INSERT INTO tipos_has_pokemons (tipos_id, pokemons_id)
+    $consultType = "SELECT id from tipos WHERE nombre = :nombreTipo";
+    $typeSelect = $connection->prepare($consultType);
+    $typeSelect->bindParam(':nombreTipo', $type_name);
+    $typeSelect->execute();
+    $resultSelectType = $typeSelect->fetchAll();
+    $resultType = $resultSelectType[0]['id'];
+    //Select Pokemon id
+    $consultID = "SELECT id from pokemons WHERE numero = :numeroPokemon";
+    $idSelect = $connection->prepare($consultID);
+    $idSelect->bindParam(':numeroPokemon', $p_numero);
+    $idSelect->execute();
+    $resultSelectID = $idSelect->fetchAll();
+    $resultID = $resultSelectID[0]['id'];
+    //Insert Type in BD
+    $insertTypeBD = "INSERT INTO tipos_has_pokemons (tipos_id, pokemons_id)
     VALUES (:tipos_id, :pokemons_id);";
-    $consultaSelect5 = $connection->prepare($consulta5);
-    $consultaSelect5->bindParam(':tipos_id', $result12);
-    $consultaSelect5->bindParam(':pokemons_id', $result123);
-    $consultaSelect5->execute();
-    // $resultTipo = $consultaSelect5->fetchAll();
+    $selectinsertTypeBD = $connection->prepare($insertTypeBD);
+    $selectinsertTypeBD->bindParam(':tipos_id', $resultType);
+    $selectinsertTypeBD->bindParam(':pokemons_id', $resultID);
+    $selectinsertTypeBD->execute();
     }
     $connection = closeBd();
     // return $result;
 }
 
-function selectPokemonNum($pokemon_num){
-    $connection = openBd();
-    $consulta = "SELECT * FROM pokemons WHERE numero = :num";
-    $consultaSelect = $connection->prepare($consulta);
-    $consultaSelect->bindParam(':num', $pokemon_num);
-    $consultaSelect->execute();
-    $result = $consultaSelect->fetchAll();
-    $connection = closeBd();
-    return $result;
-}
-
+// Delete Pokemon
 function deletePokemon($connection, $pokemonId){
     // $connection = openBd();
-    $resultado = false;
+    $result = false;
     $connection->beginTransaction();
     //Preparamos transacción
     try {
@@ -176,128 +161,135 @@ function deletePokemon($connection, $pokemonId){
         //Ejecutamos la consulta
         $stmt->execute();
         $connection->commit();
-        $resultado = true;
+        $result = true;
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
     //Cerramos BD
     $connection = closeBd();
-    return $resultado;
+    return $result;
 }
 
-function updatePokemons($connection, $p_id, $p_numero, $p_nombre, $p_altura, $p_peso, $p_evolucion, $p_imagen, $p_region, $p_tipo){
-    $resultado = false;
+// Modify Pokemon
+function selectPokemonNum($pokemonNumber){
+    $connection = openBd();
+    $consult = "SELECT * FROM pokemons WHERE numero = :num";
+    $consultSelect = $connection->prepare($consult);
+    $consultSelect->bindParam(':num', $pokemonNumber);
+    $consultSelect->execute();
+    $result = $consultSelect->fetchAll();
+    $connection = closeBd();
+    return $result;
+}
+
+function updatePokemons($connection, $pokemonID, $pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWeight, $pokemonEvolution, $pokemonPicture, $pokemonRegion, $pokemonType){
+    $result = false;
     $connection->beginTransaction();
     try {
-        $sentence = $connection->prepare("UPDATE pokemons SET numero=:numero, nombre=:nombre, altura=:altura, peso=:peso, evolucion=:evolucion, imagen=:imagen, regiones_id=:region WHERE id = $p_id");
-        $sentence->bindParam(':numero', $p_numero);
-        $sentence->bindParam(':nombre', $p_nombre);
-        $sentence->bindParam(':altura', $p_altura);
-        $sentence->bindParam(':peso', $p_peso);
-        $sentence->bindParam(':evolucion', $p_evolucion);
-        $newImagen = $_FILES['imagen']['name'];
+        $sentence = $connection->prepare("UPDATE pokemons SET numero=:numero, nombre=:nombre, altura=:altura, peso=:peso, evolucion=:evolucion, imagen=:imagen, regiones_id=:region WHERE id = $pokemonID");
+        $sentence->bindParam(':numero', $pokemonNumber);
+        $sentence->bindParam(':nombre', $pokemonName);
+        $sentence->bindParam(':altura', $pokemonHeight);
+        $sentence->bindParam(':peso', $pokemonWeight);
+        $sentence->bindParam(':evolucion', $pokemonEvolution);
+        $newPicture = $_FILES['Picture']['name'];
 
-        if ($newImagen == "") {
+        if ($newPicture == "") {
             $query = $connection->prepare("SELECT imagen FROM pokemons WHERE numero = :numero");
-            $query->bindParam(':numero', $p_numero);
+            $query->bindParam(':numero', $pokemonNumber);
             $query->execute();
-            $imagen = $query->fetch(PDO::FETCH_ASSOC);
-            $imagen = implode($imagen);
-            $sentence->bindParam(':imagen', $p_imagen);
+            $picture = $query->fetch(PDO::FETCH_ASSOC);
+            $picture = implode($picture);
+            $sentence->bindParam(':imagen', $pokemonPicture);
         } else {
-            $sentence->bindParam(':imagen', $p_imagen);
+            $sentence->bindParam(':imagen', $pokemonPicture);
         }
-        $sentence->bindParam(':region', $p_region);
-        // var_dump($p_id);
-        // var_dump($p_tipo);
-        $tiposAnteriores = tiposNumerosAntiguos($connection, $p_id);
-        $tiposNuevos = tiposNumeros($p_tipo);
-        // var_dump($tiposNuevos);
-        // var_dump($tiposAnteriores);
-        foreach ($tiposAnteriores as $tipo) {
+        $sentence->bindParam(':region', $pokemonRegion);
+        $oldTypes = oldTypesNumbers($connection, $pokemonID);
+        $newTypes = typesID($pokemonType);
+        foreach ($oldTypes as $type) {
             $query = $connection->prepare("DELETE FROM tipos_has_pokemons WHERE pokemons_id=:pokemonId AND tipos_id=:tipoViejo");
         
-            $query->bindParam(':tipoViejo', $tipo);
-            $query->bindParam(':pokemonId', $p_id);
+            $query->bindParam(':tipoViejo', $type);
+            $query->bindParam(':pokemonId', $pokemonID);
         
             $query->execute();
         }
-        foreach ($tiposNuevos as $tipo) {
+        foreach ($newTypes as $type) {
         
             $query = $connection->prepare("INSERT INTO tipos_has_pokemons (tipos_id, pokemons_id) VALUES (:tipoNuevo, :pokemonId)");
         
-            $query->bindParam(':tipoNuevo', $tipo);
-            $query->bindParam(':pokemonId', $p_id);
+            $query->bindParam(':tipoNuevo', $type);
+            $query->bindParam(':pokemonId', $pokemonID);
         
             $query->execute();
         }
-        // $resultado = true;
         $sentence->execute();
         $connection->commit();
-        $resultado = true;
+        $result = true;
     } catch (PDOException $e) {
         $connection->rollBack();
         echo "Error: " . $e->getMessage();
     }
     $connection = closeBd();
-    return $resultado;
+    return $result;
 }
 
-function obtenerIdPokemon($connection, $pokemon_num){
-    $consulta = "SELECT id FROM pokemons WHERE numero = :num";
-    $consultaSelect = $connection->prepare($consulta);
-    $consultaSelect->bindParam(':num', $pokemon_num);
-    $consultaSelect->execute();
-    $result = $consultaSelect->fetchAll();
+function getPokemonID($connection, $pokemonNumber){
+    $consult = "SELECT id FROM pokemons WHERE numero = :num";
+    $selectConsult = $connection->prepare($consult);
+    $selectConsult->bindParam(':num', $pokemonNumber);
+    $selectConsult->execute();
+    $result = $selectConsult->fetchAll();
     $connection = closeBd();
     return $result;
 }
 
-function tiposNumeros($p_tipo){
-    $arrayNumTipos = [];
-    foreach ($p_tipo as $tipo) {
-        switch ($tipo) {
+function typesID($pokemonType){
+    $arrayTypesID = [];
+    foreach ($pokemonType as $type) {
+        switch ($type) {
             case 'Agua':
-                array_push($arrayNumTipos, 5);
+                array_push($arrayTypesID, 5);
                 break;
             case 'Bicho':
-                array_push($arrayNumTipos, 8);
+                array_push($arrayTypesID, 8);
                 break;
             case 'Eléctrico':
-                array_push($arrayNumTipos, 6);
+                array_push($arrayTypesID, 6);
                 break;
             case 'Fuego':
-                array_push($arrayNumTipos, 3);
+                array_push($arrayTypesID, 3);
                 break;
             case 'Hada':
-                array_push($arrayNumTipos, 7);
+                array_push($arrayTypesID, 7);
                 break;
             case 'Lucha':
-                array_push($arrayNumTipos, 9);
+                array_push($arrayTypesID, 9);
                 break;
             case 'Planta':
-                array_push($arrayNumTipos, 1);
+                array_push($arrayTypesID, 1);
                 break;
             case 'Psíquico':
-                array_push($arrayNumTipos, 10);
+                array_push($arrayTypesID, 10);
                 break;
             case 'Veneno':
-                array_push($arrayNumTipos, 2);
+                array_push($arrayTypesID, 2);
                 break;
             case 'Volador':
-                array_push($arrayNumTipos, 4);
+                array_push($arrayTypesID, 4);
                 break;
         }
     }
-    return $arrayNumTipos;
+    return $arrayTypesID;
 }
 
-function tiposNumerosAntiguos($connection, $p_id){
-    $tiposAnteriores = selectTypesPokemon($connection, $p_id);
-    $nuevoArray = [];
-    foreach ($tiposAnteriores as $tipo) {
-        $viejoTipo = $tipo["tipos_id"];
-        array_push($nuevoArray, $viejoTipo);
+function oldTypesNumbers($connection, $pokemonID){
+    $oldTypes = selectTypesPokemon($connection, $pokemonID);
+    $newArray = [];
+    foreach ($oldTypes as $type) {
+        $oldOldType = $type["tipos_id"];
+        array_push($newArray, $oldOldType);
     }
-    return $nuevoArray;
+    return $newArray;
 }

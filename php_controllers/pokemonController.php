@@ -1,7 +1,6 @@
 <?php
 
 //Initial session.
-session_start();
 require_once('../php_library/pokedex.php');
 require_once('../php_library/bd.php');
 $connection = openBd();
@@ -29,8 +28,8 @@ if (isset($_POST['Add'])){
         $length = 3;
         $formatNumber = str_pad($_POST['Number'], $length, "0", STR_PAD_LEFT);
         $_POST['Number'] = $formatNumber;
-        $poke = selectPokemonNum($_POST['Number']);
-        if ($poke == true){
+        $pokemon = selectPokemonNum($_POST['Number']);
+        if ($pokemon == true){
             $_SESSION['Error'] = "This pokemon already exists.";
         } else {
             //Tryin' to recover data of the picture:
@@ -74,14 +73,14 @@ if (isset($_POST['Add'])){
     //AIR
 //If we delete a Pokemon
 } else if(isset($_POST['Delete'])){
-    $resultado = false;
+    $result = false;
     $id = $_POST['Number'];
-    $poke = selectPokemonId($id);
-    $rutaCompletaImagen = $poke[0]['Picture'];
+    $pokemon = selectPokemon($id);
+    $fullCompletePicture = $pokemon[0]['Picture'];
 
-    $resultado = deletePokemon($connection, $id);
-    if ($resultado == true){
-        if (unlink($rutaCompletaImagen)){
+    $result = deletePokemon($connection, $id);
+    if ($result == true){
+        if (unlink($fullCompletePicture)){
             $_SESSION['Pokedex'] = $pokedex;
             $_SESSION['Success'] = "Pokemon deleted correctly!";
         } else{
@@ -110,10 +109,10 @@ if (isset($_POST['Add'])){
 //If we edit a Pokemon
 } else if(isset($_POST['Edit'])){
     $pokemonNumber = $_POST['Number'];
-    $pokemon = selectPokemonId($pokemonNumber);
-    $tipos = selectTiposPokemon($connection, $pokemonNumber);
+    $pokemon = selectPokemon($pokemonNumber);
+    $types = selectTypes($connection, $pokemonNumber);
     $_SESSION['Pokemon'] = $pokemon[0];
-    $_SESSION['Tipo'] = $tipos;
+    $_SESSION['Type'] = $types;
     header('Location: ' . '../php_views/pokemon_edit.php');
     exit();
     
@@ -127,23 +126,23 @@ if (isset($_POST['Add'])){
     header('Location: ' . '../php_views/pokemon_edit.php');
     exit();*/
 } else if(isset($_POST['Upgrade'])){
-    $p_id = obtenerIdPokemon($connection, $_POST);
-    $pokemonSeleccionado = selectPokemonId($p_id[0]['id']);
+    $pokemonID = getPokemonID($connection, $_POST['Number']);
+    $selectedPokemon = selectPokemon($p_id[0]['ID']);
     $destinationFolder = "/Pokemon.github.io/users/";
     var_dump($_FILES['Picture']['name']);
     if($_FILES['Picture']['name'] != ""){
         $temporaryRoute = $_FILES['Picture']['tmp_name'];
-        $rutaCompletaImagen = $destinationFolder . $pokemonSeleccionado[0]['Number'] . '.png';
-        unlink($rutaCompletaImagen);
+        $fullCompletePicture = $destinationFolder . $selectedPokemon[0]['Number'] . '.png';
+        unlink($fullCompletePicture);
     } else {
-        $rutaCompletaImagen = $pokemonSeleccionado[0]['Picture'];
+        $fullCompletePicture = $selectedPokemon[0]['Picture'];
     }
 
-    $resultado = updatePokemons($connection, $pokemonSeleccionado[0]['id'], $_POST['Number'], $_POST['Name'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $_POST['Number'], $rutaCompletaImagen, $pokemonSeleccionado[0]['regiones_id'], $_POST['Type']);
-    if ($resultado == false) {
+    $result = updatePokemons($connection, $selectedPokemon[0]['id'], $_POST['Number'], $_POST['Name'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $_POST['Number'], $fullCompletePicture, $selectedPokemon[0]['regiones_id'], $_POST['Type']);
+    if ($result == false) {
         $_SESSION['Error'] = 'It cannot be to update the pokemon data.';
     } else {
-        move_uploaded_file($temporaryRoute, $rutaCompletaImagen);
+        move_uploaded_file($temporaryRoute, $fullCompletePicture);
         $_SESSION['Success'] = 'Pokemon edited successfully!';
         $_SESSION['Pokedex'] = $pokedex;
     }
