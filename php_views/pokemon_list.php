@@ -1,6 +1,7 @@
 <?php
 require_once('../php_library/pokedex.php');
 require_once('../php_library/bd.php');
+$connection = openBd();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,23 +53,18 @@ require_once('../php_library/bd.php');
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col d-flex align-items-stretch">
                 <?php
-                // if (isset($_SESSION['Pokedex'])){
-                //     $pokedex = $_SESSION['Pokedex'];
-                // } else {
-                //     $pokedex = [];
-                // }
-                $pokedex = selectPokemon($connection);
+                $pokedex = selectAllPokemon($connection);
                 foreach ($pokedex as $pokemon) {
                 ?>
                 <div class="card border-secondary">
-                    <img src="<?php echo $pokemon['Picture'] ?>" class="card-img-top" alt="Card image cap">
+                    <img src="<?php echo $pokemon['imagen'] ?>" class="card-img-top" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $pokemon['Number'] . ' - ' . $pokemon['Name'] ?></h5>
+                        <h5 class="card-title"><?php echo $pokemon['numero'] . ' - ' . $pokemon['nombre'] ?></h5>
                         <p class="card-text">
                             <?php
                             $types = selectTypesPokemon($connection, $pokemon['id']);
                             foreach ($types as $type){?>                     
-                                <span class="badge bg-warning text-dark"><?php print_r($type['Name']); ?></span>
+                                <span class="badge bg-warning text-dark"><?php print_r($type['nombre']); ?></span>
                             <?php } ?>
                         </p>
                     </div>

@@ -331,6 +331,6 @@ if (isset($_SESSION['Pokemon'])){
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     </body>
 </html>

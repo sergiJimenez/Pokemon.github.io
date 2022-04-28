@@ -4,7 +4,7 @@ session_start();
 function openBd(){
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "password";
     try {
         $connection = new PDO("mysql:host=$servername;dbname=pokedex", $username, $password);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -111,8 +111,8 @@ function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWei
     $idRegion = $resultRegion[0]['id'];
 
     // Insert Pokemon in BD
-    $insertPokemon = "INSERT INTO pokemons (numero, nombre, altura, peso, evolucion, imagen, regiones_id) VALUES (:numero, :nombre, :altura, :peso, :evolucion, :imagen, :regiones_id);";
-    $insertSelectPokemon = $connection->prepare($insertPokemon);
+    $insertPokemonConsult = "INSERT INTO pokemons (numero, nombre, altura, peso, evolucion, imagen, regiones_id) VALUES (:numero, :nombre, :altura, :peso, :evolucion, :imagen, :regiones_id);";
+    $insertSelectPokemon = $connection->prepare($insertPokemonConsult);
     $insertSelectPokemon->bindParam(':numero', $pokemonNumber);
     $insertSelectPokemon->bindParam(':nombre', $pokemonName);
     $insertSelectPokemon->bindParam(':altura', $pokemonHeight);
@@ -133,7 +133,7 @@ function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWei
     //Select Pokemon id
     $consultID = "SELECT id from pokemons WHERE numero = :numeroPokemon";
     $idSelect = $connection->prepare($consultID);
-    $idSelect->bindParam(':numeroPokemon', $p_numero);
+    $idSelect->bindParam(':numeroPokemon', $pokemonNumber);
     $idSelect->execute();
     $resultSelectID = $idSelect->fetchAll();
     $resultID = $resultSelectID[0]['id'];
@@ -146,7 +146,6 @@ function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWei
     $selectinsertTypeBD->execute();
     }
     $connection = closeBd();
-    // return $result;
 }
 
 // Delete Pokemon
@@ -249,35 +248,59 @@ function typesID($pokemonType){
     $arrayTypesID = [];
     foreach ($pokemonType as $type) {
         switch ($type) {
-            case 'Agua':
-                array_push($arrayTypesID, 5);
-                break;
-            case 'Bicho':
-                array_push($arrayTypesID, 8);
-                break;
-            case 'Eléctrico':
-                array_push($arrayTypesID, 6);
-                break;
-            case 'Fuego':
-                array_push($arrayTypesID, 3);
-                break;
-            case 'Hada':
-                array_push($arrayTypesID, 7);
-                break;
-            case 'Lucha':
-                array_push($arrayTypesID, 9);
-                break;
             case 'Planta':
                 array_push($arrayTypesID, 1);
-                break;
-            case 'Psíquico':
-                array_push($arrayTypesID, 10);
                 break;
             case 'Veneno':
                 array_push($arrayTypesID, 2);
                 break;
+            case 'Fuego':
+                array_push($arrayTypesID, 3);
+                break;
             case 'Volador':
                 array_push($arrayTypesID, 4);
+                break;
+            case 'Agua':
+                array_push($arrayTypesID, 5);
+                break;
+            case 'Eléctrico':
+                array_push($arrayTypesID, 6);
+                break;
+            case 'Hada':
+                array_push($arrayTypesID, 7);
+                break;
+            case 'Bicho':
+                array_push($arrayTypesID, 8);
+                break;
+            case 'Lucha':
+                array_push($arrayTypesID, 9);
+                break;
+            case 'Psíquico':
+                array_push($arrayTypesID, 10);
+                break;
+            case 'Fantasma':
+                array_push($arrayTypesID, 11);
+                break;
+            case 'Siniestro':
+                array_push($arrayTypesID, 12);
+                break;
+            case 'Hielo':
+                array_push($arrayTypesID, 13);
+                break;
+            case 'Roca':
+                array_push($arrayTypesID, 14);
+                break;
+            case 'Tierra':
+                array_push($arrayTypesID, 15);
+                break;
+            case 'Acero':
+                array_push($arrayTypesID, 16);
+                break;
+            case 'Normal':
+                array_push($arrayTypesID, 17);
+                break;
+            case 'Dragon':
+                array_push($arrayTypesID, 18);
                 break;
         }
     }

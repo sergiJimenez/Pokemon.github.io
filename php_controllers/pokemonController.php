@@ -1,5 +1,4 @@
-<?php
-
+<?php   
 //Initial session.
 require_once('../php_library/pokedex.php');
 require_once('../php_library/bd.php');
@@ -55,16 +54,7 @@ if (isset($_POST['Add'])){
             //We came back to ................................................
             header('Location: ' . '../php_views/pokemon_list.php');
         }
-        exit();
-        // if (is_null($_POST['Type'])){
-        //     $_POST['Type'] = [" "]; //Array null = The Nothin'
-        // }
-
-        //Create a Pokemon
-        // $pokemon = createPokemon($_POST['Number'], $_POST['Name'], $_POST['Region'], $_POST['Type'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $fullRoute);
-        
-        //Adding a Pokemon
-        // addPokemon($pokemon, $pokedex);        
+        exit();   
     }
     //AIR
     //AIR
@@ -74,9 +64,9 @@ if (isset($_POST['Add'])){
 //If we delete a Pokemon
 } else if(isset($_POST['Delete'])){
     $result = false;
-    $id = $_POST['Number'];
+    $id = $_POST['numero'];
     $pokemon = selectPokemon($id);
-    $fullCompletePicture = $pokemon[0]['Picture'];
+    $fullCompletePicture = $pokemon[0]['imagen'];
 
     $result = deletePokemon($connection, $id);
     if ($result == true){
@@ -89,23 +79,6 @@ if (isset($_POST['Add'])){
     }
     header('Location: ' . '../php_views/pokemon_list.php');
     exit();
-    // $pokemonNumber = $_POST['Number'];
-    // $position = searchPokemonNumber($pokemonNumber, $pokedex);
-    // $pokemon = $pokedex[$position];
-    // dropPokemon($pokemonNumber, $pokedex);
-
-    // $destinationFolder = "../media/PokemonsImages/";
-    // $fullRoute = $destinationFolder . $_POST['Number'] . '.png';
-
-    //Delete the picture
-    // if (unlink($fullRoute)){
-    //     $_SESSION['Pokedex'] = $pokedex;
-    // } else {
-    //     $_SESSION['Error'] = 'Pokemon can not be deleted. Please check what is happening.';
-    // }
-    //We are back to Pokemon List
-    // header('Location: ' . '../php_views/pokemon_list.php');
-    // exit();
 //If we edit a Pokemon
 } else if(isset($_POST['Edit'])){
     $pokemonNumber = $_POST['Number'];
@@ -115,30 +88,20 @@ if (isset($_POST['Add'])){
     $_SESSION['Type'] = $types;
     header('Location: ' . '../php_views/pokemon_edit.php');
     exit();
-    
-    /*//Take the Pokemon number
-    //We are searching the pokemon by the number
-    $position = searchPokemonNumber($pokemonNumber, $pokedex);
-    $pokemon = $pokedex[$position];
-    //Savin' the pokemon on the session
-    $_SESSION['Pokemon'] = $pokemon;
-    //Redirect to pokemonEdit.php
-    header('Location: ' . '../php_views/pokemon_edit.php');
-    exit();*/
 } else if(isset($_POST['Upgrade'])){
     $pokemonID = getPokemonID($connection, $_POST['Number']);
-    $selectedPokemon = selectPokemon($p_id[0]['ID']);
+    $selectedPokemon = selectPokemon($pokemonId[0]['id']);
     $destinationFolder = "/Pokemon.github.io/users/";
     var_dump($_FILES['Picture']['name']);
     if($_FILES['Picture']['name'] != ""){
         $temporaryRoute = $_FILES['Picture']['tmp_name'];
-        $fullCompletePicture = $destinationFolder . $selectedPokemon[0]['Number'] . '.png';
+        $fullCompletePicture = $destinationFolder . $selectedPokemon[0]['numero'] . '.png';
         unlink($fullCompletePicture);
     } else {
         $fullCompletePicture = $selectedPokemon[0]['Picture'];
     }
 
-    $result = updatePokemons($connection, $selectedPokemon[0]['id'], $_POST['Number'], $_POST['Name'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $_POST['Number'], $fullCompletePicture, $selectedPokemon[0]['regiones_id'], $_POST['Type']);
+    $result = updatePokemons($connection, $selectedPokemon[0]['id'], $_POST['Number'], $_POST['Name'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $fullCompletePicture, $selectedPokemon[0]['regiones_id'], $_POST['Type']);
     if ($result == false) {
         $_SESSION['Error'] = 'It cannot be to update the pokemon data.';
     } else {
@@ -148,21 +111,5 @@ if (isset($_POST['Add'])){
     }
     header('Location: ' . '../php_views/pokemon_list.php');
     exit();
-    /*
-    //If array is null we can not see anything
-    if (is_null($_POST['Type'])){
-        $_POST['Type'] = [" "];
-    }
-    $temporaryRoute = $_FILES['Picture']['temporalName'];
-    $destinationFolder = "../users/";
-    $fullRouteImage = $destinationFolder . $_POST['Number'] . '.png';
-    modifyPokemon($pokedex, $_POST['Number'], $_POST['Number'], $_POST['Name'], $_POST['Region'], $_POST['Type'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $fullRouteImage);
-    //If we have not error's copy the picture in /media/pokemonsPicture
-    move_uploaded_file($temporaryRoute, $fullRoute);
-    //We save the pokedex on the session
-    $_SESSION['Pokedex'] = $pokedex;
-    //We are back to pokemonList
-    header('Location: ' . '../php_views/pokemon_list.php');
-    exit();*/
 }
 ?>

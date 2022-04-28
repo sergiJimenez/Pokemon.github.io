@@ -9,7 +9,7 @@ if (isset($_SESSION['Pokemon'])){
     unset($_SESSION['Pokemon']);
 }
 if (isset($_SESSION['Type'])){
-    $Type = $_SESSION['Type'];
+    $type = $_SESSION['Type'];
     unset($_SESSION['Type']);
 }
 ?>
@@ -77,7 +77,7 @@ if (isset($_SESSION['Type'])){
                             <div class="row">
                                 <label for="pokemonNumber" class="col-sm-3 col-form-label">Número</label>
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" id="Number" name="Number" readonly value="<?php echo $pokemon['Number']?>">
+                                    <input type="text" class="form-control" id="Number" name="Number" readonly value="<?php echo $pokemon['numero']?>">
                                 </div>
                             </div>
                             <!-- AIR -->
@@ -89,7 +89,7 @@ if (isset($_SESSION['Type'])){
                             <div class="row pt-2">
                                 <label for="pokemonName" class="col-sm-3 col-form-label">Nombre</label>
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" id="Name" name="Name" value="<?php echo $pokemon['Name']?>">
+                                    <input type="text" class="form-control" id="Name" name="Name" value="<?php echo $pokemon['nombre']?>">
                                 </div>
                             </div>
                             <!-- AIR -->
@@ -103,15 +103,15 @@ if (isset($_SESSION['Type'])){
                                 <div class="col-sm">
                                     <select id="Region" name="Region" class="form-select">
                                         <!-- Region 1 -->
-                                        <option value="Kanto" <?php if($pokemon['Region'] == 'Kanto') echo 'selected';?>>Kanto</option>
+                                        <option value="Kanto" <?php if($pokemon['regiones_id'] == 1) echo 'selected';?>>Kanto</option>
                                         <!-- Region 2 -->
-                                        <option value="Jotho" <?php if($pokemon['Region'] == 'Jotho') echo 'selected';?>>Jotho</option>
+                                        <option value="Jotho" <?php if($pokemon['regiones_id'] == 2) echo 'selected';?>>Jotho</option>
                                         <!-- Region 3 -->
-                                        <option value="Hoenn" <?php if($pokemon['Region'] == 'Hoenn') echo 'selected';?>>Hoenn</option>
+                                        <option value="Hoenn" <?php if($pokemon['regiones_id'] == 3) echo 'selected';?>>Hoenn</option>
                                         <!-- Region 4 -->
-                                        <option value="Sinnoh" <?php if($pokemon['Region'] == 'Sinnoh') echo 'selected';?>>Sinnoh</option>
+                                        <option value="Sinnoh" <?php if($pokemon['regiones_id'] == 4) echo 'selected';?>>Sinnoh</option>
                                         <!-- Region 5 -->
-                                        <option value="Teselia" <?php if($pokemon['Region'] == 'Teselia') echo 'selected';?>>Teselia</option>
+                                        <option value="Teselia" <?php if($pokemon['regiones_id'] == 5) echo 'selected';?>>Teselia</option>
                                     </select>
                                 </div>
                             </div>
@@ -128,126 +128,126 @@ if (isset($_SESSION['Type'])){
                                 <div class="col-sm-7">
                                     <!-- Type1 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type1" name="Type[]" value="Planta" <?php if(in_array("Planta", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type1" name="Type[]" value="Planta" <?php if(in_array('1', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type1" class="row-sm-4">
                                             Planta
                                         </label>
                                     </div>
                                     <!-- Type2 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type2" name="Type[]" value="Veneno" <?php if(in_array("Veneno", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type2" name="Type[]" value="Veneno" <?php if(in_array('2', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type2" class="row-sm-4">
                                             Veneno
                                         </label>
                                     </div>
                                     <!-- Type3 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type3" name="Type[]" value="Fuego" <?php if(in_array("Fuego", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type3" name="Type[]" value="Fuego" <?php if(in_array('3', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type3" class="row-sm-4">
                                             Fuego
                                         </label>
                                     </div>
                                     <!-- Type4 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type4" name="Type[]" value="Volador" <?php if(in_array("Volador", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type4" name="Type[]" value="Volador" <?php if(in_array('4', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type4" class="row-sm-4">
                                             Volador
                                         </label>
                                     </div>
                                     <!-- Type5 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type5" name="Type[]" value="Agua" <?php if(in_array("Agua", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type5" name="Type[]" value="Agua" <?php if(in_array('5', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type5" class="row-sm-4">
                                             Agua
                                         </label>
                                     </div>
                                     <!-- Type6 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type6" name="Type[]" value="Electrico" <?php if(in_array("Electrico", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type6" name="Type[]" value="Electrico" <?php if(in_array('6', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type6" class="row-sm-4">
                                             Eléctrico
                                         </label>
                                     </div>
                                     <!-- Type7 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type7" name="Type[]" value="Hada" <?php if(in_array("Hada", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type7" name="Type[]" value="Hada" <?php if(in_array('7', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type7" class="row-sm-4">
                                             Hada
                                         </label>
                                     </div>
                                     <!-- Type8 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type8" name="Type[]" value="Bicho" <?php if(in_array("Bicho", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type8" name="Type[]" value="Bicho" <?php if(in_array('8', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type8" class="row-sm-4">
                                             Bicho
                                         </label>
                                     </div>
                                     <!-- Type9 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type9" name="Type[]" value="Lucha" <?php if(in_array("Lucha", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type9" name="Type[]" value="Lucha" <?php if(in_array('9', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type9" class="row-sm-4">
                                             Lucha
                                         </label>
                                     </div>
                                     <!-- Type10 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type10" name="Type[]" value="Psiquico" <?php if(in_array("Psiquico", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type10" name="Type[]" value="Psiquico" <?php if(in_array('10', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type10" class="row-sm-4">
                                             Psíquico
                                         </label>
                                     </div>
                                     <!-- Type11 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type11" name="Type[]" value="Fantasma" <?php if(in_array("Fantasma", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type11" name="Type[]" value="Fantasma" <?php if(in_array('11', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type11" class="row-sm-4">
                                             Fantasma
                                         </label>
                                     </div>
                                     <!-- Type12 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type12" name="Type[]" value="Siniestro" <?php if(in_array("Siniestro", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type12" name="Type[]" value="Siniestro" <?php if(in_array('12', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type12" class="row-sm-4">
                                             Siniestro
                                         </label>
                                     </div>
                                     <!-- Type13 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type13" name="Type[]" value="Hielo" <?php if(in_array("Hielo", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type13" name="Type[]" value="Hielo" <?php if(in_array('13', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type13" class="row-sm-4">
                                             Hielo
                                         </label>
                                     </div>
                                     <!-- Type14 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type14" name="Type[]" value="Roca" <?php if(in_array("Roca", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type14" name="Type[]" value="Roca" <?php if(in_array('14', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type14" class="row-sm-4">
                                             Roca
                                         </label>
                                     </div>
                                     <!-- Type15 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type15" name="Type[]" value="Tierra" <?php if(in_array("Tierra", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type15" name="Type[]" value="Tierra" <?php if(in_array('15', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type15" class="row-sm-4">
                                             Tierra
                                         </label>
                                     </div>
                                     <!-- Type16 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type16" name="Type[]" value="Acero" <?php if(in_array("Acero", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type16" name="Type[]" value="Acero" <?php if(in_array('16', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type16" class="row-sm-4">
                                             Acero
                                         </label>
                                     </div>
                                     <!-- Type17 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type17" name="Type[]" value="Normal" <?php if(in_array("Normal", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type17" name="Type[]" value="Normal" <?php if(in_array('17', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type17" class="row-sm-4">
                                             Normal
                                         </label>
                                     </div>
                                     <!-- Type18 -->
                                     <div class="form-check-inline">
-                                        <input type="checkbox" class="form-check-input" id="Type18" name="Type[]" value="Dragon" <?php if(in_array("Dragon", $pokemon['Type'])) echo 'checked'; ?>>
+                                        <input type="checkbox" class="form-check-input" id="Type18" name="Type[]" value="Dragon" <?php if(in_array('18', array_column($type, 'tipos_id'))) echo 'checked'; ?>>
                                         <label for="type18" class="row-sm-4">
                                             Dragon
                                         </label>
@@ -263,7 +263,7 @@ if (isset($_SESSION['Type'])){
                             <div class="row pt-2">
                                 <label for="height" class="col-sm-3 col-form-label">Altura</label>
                                 <div class="input-group col-sm">
-                                    <input type="number" class="form-control" id="Height" name="Height" min="1" required value="<?php echo $pokemon['Height']?>">
+                                    <input type="number" class="form-control" id="Height" name="Height" min="1" required value="<?php echo $pokemon['altura']?>">
                                     <span class="input-group-text" id="addon-wrapping">cm</span>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@ if (isset($_SESSION['Type'])){
                             <div class="row pt-2">
                                 <label for="weight" class="col-sm-3 col-form-label">Peso</label>
                                 <div class="input-group col-sm">
-                                    <input type="number" class="form-control" id="Weight" name="Weight" min="0" step="0.01" required value="<?php echo $pokemon['Weight']?>"><!--  ___________________DECIMALS______________________  -->
+                                    <input type="number" class="form-control" id="Weight" name="Weight" min="0" step="0.01" required value="<?php echo $pokemon['peso']?>"><!--  ___________________DECIMALS______________________  -->
                                     <span class="input-group-text" id="addon-wrapping">kg</span>
                                 </div>
                             </div>
@@ -291,17 +291,17 @@ if (isset($_SESSION['Type'])){
                                 <div class="col-sm">
                                     <!-- Option1 -->
                                     <div class="form-check form-check-inline">
-                                        <input type="radio" id="withoutEvolution" class="form-check-input" name="Evolution" value="withoutEvolution" <?php if($pokemon['Evolution'] == 'withoutEvolution') echo 'checked';?>>
+                                        <input type="radio" id="withoutEvolution" class="form-check-input" name="Evolution" value="withoutEvolution" <?php if($pokemon['evolucion'] == 'withoutEvolution') echo 'checked';?>>
                                         <label class="form-check-label" for="withoutEvolution">Sin Evolucionar</label>
                                     </div>
                                     <!-- Option2 -->
                                     <div class="form-check form-check-inline">
-                                        <input type="radio" id="firstEvolution" class="form-check-input" name="Evolution" value="firstEvolution" <?php if($pokemon['Evolution'] == 'firstEvolution') echo 'checked';?>>
+                                        <input type="radio" id="firstEvolution" class="form-check-input" name="Evolution" value="firstEvolution" <?php if($pokemon['evolucion'] == 'firstEvolution') echo 'checked';?>>
                                         <label class="form-check-label" for="firstEvolution">Primera Evolución</label>
                                     </div>
                                     <!-- Option3 -->
                                     <div class="form-check form-check-inline">
-                                        <input type="radio" id="othersEvolution" class="form-check-input" name="Evolution" value="othersEvolution" <?php if($pokemon['Evolution'] == 'othersEvolution') echo 'checked';?>>
+                                        <input type="radio" id="othersEvolution" class="form-check-input" name="Evolution" value="othersEvolution" <?php if($pokemon['evolucion'] == 'othersEvolution') echo 'checked';?>>
                                         <label class="form-check-label" for="othersEvolution">Otras Evoluciones</label>
                                     </div>
                                 </div>
