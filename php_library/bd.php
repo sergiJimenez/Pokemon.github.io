@@ -150,14 +150,10 @@ function insertPokemon($pokemonNumber, $pokemonName, $pokemonHeight, $pokemonWei
 
 // Delete Pokemon
 function deletePokemon($connection, $pokemonId){
-    // $connection = openBd();
     $result = false;
     $connection->beginTransaction();
-    //Preparamos transacción
     try {
-        //Preparamos la consulta para la tabla Pokemons
         $stmt = $connection->prepare("DELETE pokemons, tipos_has_pokemons FROM pokemons JOIN tipos_has_pokemons ON pokemons.id=tipos_has_pokemons.pokemons_id WHERE pokemons.id = $pokemonId");
-        //Ejecutamos la consulta
         $stmt->execute();
         $connection->commit();
         $result = true;
@@ -208,19 +204,14 @@ function updatePokemons($connection, $pokemonID, $pokemonNumber, $pokemonName, $
         $newTypes = typesID($pokemonType);
         foreach ($oldTypes as $type) {
             $query = $connection->prepare("DELETE FROM tipos_has_pokemons WHERE pokemons_id=:pokemonId AND tipos_id=:tipoViejo");
-        
             $query->bindParam(':tipoViejo', $type);
             $query->bindParam(':pokemonId', $pokemonID);
-        
             $query->execute();
         }
         foreach ($newTypes as $type) {
-        
             $query = $connection->prepare("INSERT INTO tipos_has_pokemons (tipos_id, pokemons_id) VALUES (:tipoNuevo, :pokemonId)");
-        
             $query->bindParam(':tipoNuevo', $type);
             $query->bindParam(':pokemonId', $pokemonID);
-        
             $query->execute();
         }
         $sentence->execute();

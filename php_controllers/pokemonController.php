@@ -64,9 +64,9 @@ if (isset($_POST['Add'])){
 //If we delete a Pokemon
 } else if(isset($_POST['Delete'])){
     $result = false;
-    $id = $_POST['numero'];
+    $id = $_POST['Number'];
     $pokemon = selectPokemon($id);
-    $fullCompletePicture = $pokemon[0]['imagen'];
+    $imagePATH = $pokemon[0]['imagen'];
 
     $result = deletePokemon($connection, $id);
     if ($result == true){
@@ -90,7 +90,7 @@ if (isset($_POST['Add'])){
     exit();
 } else if(isset($_POST['Upgrade'])){
     $pokemonID = getPokemonID($connection, $_POST['Number']);
-    $selectedPokemon = selectPokemon($pokemonId[0]['id']);
+    $selectedPokemon = selectPokemon($pokemonID[0]['id']);
     $destinationFolder = "/Pokemon.github.io/users/";
     var_dump($_FILES['Picture']['name']);
     if($_FILES['Picture']['name'] != ""){
@@ -98,7 +98,7 @@ if (isset($_POST['Add'])){
         $fullCompletePicture = $destinationFolder . $selectedPokemon[0]['numero'] . '.png';
         unlink($fullCompletePicture);
     } else {
-        $fullCompletePicture = $selectedPokemon[0]['Picture'];
+        $fullCompletePicture = $selectedPokemon[0]['imagen'];
     }
 
     $result = updatePokemons($connection, $selectedPokemon[0]['id'], $_POST['Number'], $_POST['Name'], $_POST['Height'], $_POST['Weight'], $_POST['Evolution'], $fullCompletePicture, $selectedPokemon[0]['regiones_id'], $_POST['Type']);
